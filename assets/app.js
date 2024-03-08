@@ -1,4 +1,3 @@
-import './bootstrap.js';
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -6,5 +5,5 @@ import './bootstrap.js';
  * (and its CSS file) in your base layout (base.html.twig).
  */
 
-// any CSS you import will output into a single css file (app.css in this case)
-import './styles/app.css';
+import './bootstrap.js';
+import './styles/app.css'; // any CSS you import will output into a single css file (app.css in this case)
