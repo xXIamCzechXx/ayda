@@ -1,8 +1,4 @@
 @import '~bootstrap';
 @import '~@fortawesome/fontawesome-free';
 @import '~@fontsource/roboto-condensed';
-@import './material-dashboard/material-dashboard.css';
-
-body {
-    background-color: lightgray;
-}
+@import './css/material-dashboard/material-dashboard.css';

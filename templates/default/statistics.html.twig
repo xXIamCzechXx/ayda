@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistics{% endblock %}
+
+{% block aside %}
+    {% embed 'shared/aside/sidebar/sidebar.html.twig' %}
+        {% block statistics %} {# If you make new module, just rewrite name of its block here and add it to sidebar.html.twig #}
+            {% set active = true %}
+            {{ parent() }}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid py-4" data-controller="chart"> {# When template contains chart it must be loaded via chart data-controller #}
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="mb-0">Charts</h5>
+                <p class="text-sm mb-0">
+                    Charts on this page use Chart.js - Simple yet flexible JavaScript charting for designers &amp; developers.
+                </p>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-lg-6 col-12">
+                {{ include('component/chart/line_dots.html.twig') }}
+            </div>
+            <div class="col-lg-6 col-12 mt-md-0 mt-4">
+                {{ include('component/chart/line.html.twig') }}
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-lg-6 col-12">
+                {{ include('component/chart/bar_vertical.html.twig') }}
+            </div>
+            <div class="col-lg-6 col-12 mt-md-0 mt-4">
+                {{ include('component/chart/bar_horizontal.html.twig') }}
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-lg-6 col-12">
+                {{ include('component/chart/mixed.html.twig') }}
+            </div>
+            <div class="col-lg-6 col-12 mt-md-0 mt-4">
+                {{ include('component/chart/bubble.html.twig') }}
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-lg-6 col-12">
+                {{ include('component/chart/doughnut.html.twig') }}
+            </div>
+            <div class="col-lg-6 col-12 mt-md-0 mt-4">
+                {{ include('component/chart/pie.html.twig') }}
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                {{ include('component/chart/radar.html.twig') }}
+            </div>
+            <div class="col-md-6 mt-md-0 mt-4">
+                {{ include('component/chart/polar.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
