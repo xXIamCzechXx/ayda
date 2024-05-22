@@ -9,7 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted("ROLE_USER")]
 class DefaultController extends AbstractController
 {
     #[Route('/', name: 'app_default')]
@@ -39,14 +41,6 @@ class DefaultController extends AbstractController
     public function statistics(): Response
     {
         return $this->render('default/statistics.html.twig', [
-            'controller_name' => 'DefaultController',
-        ]);
-    }
-
-    #[Route('/login', name: 'app_login')]
-    public function login(): Response
-    {
-        return $this->render('default/login.html.twig', [
             'controller_name' => 'DefaultController',
         ]);
     }

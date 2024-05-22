@@ -15,72 +15,16 @@
     <div class="container-fluid py-4" data-controller="chart">
         <div class="row">
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card">
-                    <div class="card-header p-3 pt-2">
-                        <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                            <i class="material-icons opacity-10">weekend</i>
-                        </div>
-                        <div class="text-end pt-1">
-                            <p class="text-sm mb-0 text-capitalize">Today's Money</p>
-                            <h4 class="mb-0">$53k</h4>
-                        </div>
-                    </div>
-                    <hr class="dark horizontal my-0">
-                    <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than last week</p>
-                    </div>
-                </div>
+                {{ include('component/widget/basic_widget.html.twig') }}
             </div>
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card">
-                    <div class="card-header p-3 pt-2">
-                        <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                            <i class="material-icons opacity-10">person</i>
-                        </div>
-                        <div class="text-end pt-1">
-                            <p class="text-sm mb-0 text-capitalize">Today's Users</p>
-                            <h4 class="mb-0">2,300</h4>
-                        </div>
-                    </div>
-                    <hr class="dark horizontal my-0">
-                    <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than last month</p>
-                    </div>
-                </div>
+                {{ include('component/widget/basic_widget.html.twig') }}
             </div>
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card">
-                    <div class="card-header p-3 pt-2">
-                        <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                            <i class="material-icons opacity-10">person</i>
-                        </div>
-                        <div class="text-end pt-1">
-                            <p class="text-sm mb-0 text-capitalize">New Clients</p>
-                            <h4 class="mb-0" id="c-num">3462</h4>
-                        </div>
-                    </div>
-                    <hr class="dark horizontal my-0">
-                    <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> than yesterday</p>
-                    </div>
-                </div>
+                {{ include('component/widget/basic_widget.html.twig') }}
             </div>
             <div class="col-xl-3 col-sm-6">
-                <div class="card">
-                    <div class="card-header p-3 pt-2">
-                        <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                            <i class="material-icons opacity-10">weekend</i>
-                        </div>
-                        <div class="text-end pt-1">
-                            <p class="text-sm mb-0 text-capitalize">Sales</p>
-                            <h4 class="mb-0">$103,430</h4>
-                        </div>
-                    </div>
-                    <hr class="dark horizontal my-0">
-                    <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p>
-                    </div>
-                </div>
+                {{ include('component/widget/basic_widget.html.twig') }}
             </div>
         </div>
         <div class="row mt-4">
@@ -432,45 +376,45 @@
                     <div class="card-body p-3">
                         <div class="timeline timeline-one-side">
                             <div class="timeline-block mb-3">
-          <span class="timeline-step">
-            <i class="material-icons text-success text-gradient">notifications</i>
-          </span>
+                              <span class="timeline-step">
+                                <i class="material-icons text-success text-gradient">notifications</i>
+                              </span>
                                 <div class="timeline-content">
                                     <h6 class="text-dark text-sm font-weight-bold mb-0">$2400, Design changes</h6>
                                     <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:20 PM</p>
                                 </div>
                             </div>
                             <div class="timeline-block mb-3">
-          <span class="timeline-step">
-            <i class="material-icons text-danger text-gradient">code</i>
-          </span>
+                              <span class="timeline-step">
+                                <i class="material-icons text-danger text-gradient">code</i>
+                              </span>
                                 <div class="timeline-content">
                                     <h6 class="text-dark text-sm font-weight-bold mb-0">New order #1832412</h6>
                                     <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 11 PM</p>
                                 </div>
                             </div>
                             <div class="timeline-block mb-3">
-          <span class="timeline-step">
-            <i class="material-icons text-info text-gradient">shopping_cart</i>
-          </span>
+                              <span class="timeline-step">
+                                <i class="material-icons text-info text-gradient">shopping_cart</i>
+                              </span>
                                 <div class="timeline-content">
                                     <h6 class="text-dark text-sm font-weight-bold mb-0">Server payments for April</h6>
                                     <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 9:34 PM</p>
                                 </div>
                             </div>
                             <div class="timeline-block mb-3">
-          <span class="timeline-step">
-            <i class="material-icons text-warning text-gradient">credit_card</i>
-          </span>
+                                  <span class="timeline-step">
+                                    <i class="material-icons text-warning text-gradient">credit_card</i>
+                                  </span>
                                 <div class="timeline-content">
                                     <h6 class="text-dark text-sm font-weight-bold mb-0">New card added for order #4395133</h6>
                                     <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">20 DEC 2:20 AM</p>
                                 </div>
                             </div>
                             <div class="timeline-block mb-3">
-          <span class="timeline-step">
-            <i class="material-icons text-primary text-gradient">key</i>
-          </span>
+                              <span class="timeline-step">
+                                <i class="material-icons text-primary text-gradient">key</i>
+                              </span>
                                 <div class="timeline-content">
                                     <h6 class="text-dark text-sm font-weight-bold mb-0">Unlock packages for development</h6>
                                     <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">18 DEC 4:54 AM</p>
@@ -588,91 +532,5 @@
                 </div>
             </div>
         </div>
-        {#            <div class="row mb-4">#}
-        {#                <div class="col-lg-12 col-md-12 mb-md-0 mb-4">#}
-        {#                    <div class="card">#}
-        {#                        <!-- Gallery -->#}
-        {#                        <div class="pswp-gallery pswp-gallery--single-column" id="gallery--getting-started">#}
-        {#                            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">#}
-        {#                                <a href="javascript:"#}
-        {#                                   data-pswp-width="1669"#}
-        {#                                   data-pswp-height="2500"#}
-        {#                                >#}
-        {#                                    <img#}
-        {#                                            src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"#}
-        {#                                            class="w-100 shadow-1-strong rounded mb-4"#}
-        {#                                            alt="Boat on Calm Water"#}
-        {#                                    />#}
-        {#                                </a>#}
-        {#                                <img#}
-        {#                                        src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp"#}
-        {#                                        class="w-100 shadow-1-strong rounded mb-4"#}
-        {#                                        alt="Wintry Mountain Landscape"#}
-        {#                                />#}
-        {#                            </div>#}
-
-        {#                            <div class="col-lg-4 mb-4 mb-lg-0">#}
-        {#                                <img#}
-        {#                                        src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"#}
-        {#                                        class="w-100 shadow-1-strong rounded mb-4"#}
-        {#                                        alt="Mountains in the Clouds"#}
-        {#                                />#}
-
-        {#                                <img#}
-        {#                                        src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"#}
-        {#                                        class="w-100 shadow-1-strong rounded mb-4"#}
-        {#                                        alt="Boat on Calm Water"#}
-        {#                                />#}
-        {#                            </div>#}
-
-        {#                            <div class="col-lg-4 mb-4 mb-lg-0">#}
-        {#                                <img#}
-        {#                                        src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(18).webp"#}
-        {#                                        class="w-100 shadow-1-strong rounded mb-4"#}
-        {#                                        alt="Waves at Sea"#}
-        {#                                />#}
-
-        {#                                <img#}
-        {#                                        src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain3.webp"#}
-        {#                                        class="w-100 shadow-1-strong rounded mb-4"#}
-        {#                                        alt="Yosemite National Park"#}
-        {#                                />#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {#                        <!-- Gallery -->#}
-        {#                        <div class="pswp-gallery pswp-gallery--single-column">#}
-        {#                            <a href="javascript:"#}
-        {#                               data-pswp-width="1669"#}
-        {#                               data-pswp-height="2500"#}
-        {#                            >#}
-        {#                                <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-200.jpg" alt="" />#}
-        {#                            </a>#}
-        {#                            <!-- cropped thumbnail: -->#}
-        {#                            <a href="javascript:"#}
-        {#                               data-pswp-width="1875"#}
-        {#                               data-pswp-height="2500"#}
-        {#                               data-cropped="true"#}
-        {#                            >#}
-        {#                                <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/7/img-200.jpg" alt="" />#}
-        {#                            </a>#}
-        {#                            <!-- data-pswp-src with custom URL in href -->#}
-        {#                            <a href="javascript:"#}
-        {#                               data-pswp-src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-2500.jpg"#}
-        {#                               data-pswp-width="2500"#}
-        {#                               data-pswp-height="1666"#}
-        {#                            >#}
-        {#                                <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-200.jpg" alt="" />#}
-        {#                            </a>#}
-        {#                            <!-- Without thumbnail: -->#}
-        {#                            <a href="javascript:"#}
-        {#                               data-pswp-src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/5/img-2500.jpg"#}
-        {#                               data-pswp-width="2500"#}
-        {#                               data-pswp-height="1668"#}
-        {#                            >#}
-        {#                            </a>#}
-        {#                        </div>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {#            </div>#}
     </div>
 {% endblock %}
