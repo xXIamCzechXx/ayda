@@ -13,9 +13,9 @@ class AppFixtures extends Fixture
         // $product = new Product(); // To create an object without factory
         // $manager->persist($product); // Persisting the fixture without factory
 
-        UserFactory::createOne([
-            'email' => 'xXIamCzechXx@gmail.com',
-            'plainPassword' => '03Gate16',
+        UserFactory::createOne([ // Main admin
+            'email' => 'admin@admin.com',
+            'plainPassword' => 'admin',
             'roles' => ['ROLE_ADMIN'],
         ]);
         UserFactory::createMany(5);

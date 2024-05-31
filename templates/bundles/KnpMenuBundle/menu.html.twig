@@ -1,0 +1,15 @@
+{% extends 'knp_menu.html.twig' %}
+
+{# Paste custom extra menu types#}
+{% block label %}
+    {% import _self as macros %}
+    {% if item.extra('first_level', false) %}
+        <i class="material-icons-round opacity-10">{{ item.label }}</i>
+        <span class="nav-link-text ms-2 ps-1">{{ item.name }}</span>
+    {% elseif item.extra('second_level', false) %}
+        <span class="sidenav-mini-icon"> {{ item.label }} </span>
+        <span class="sidenav-normal  ms-2  ps-1"> {{ item.name }} <b class="caret"></b></span>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock label %}
