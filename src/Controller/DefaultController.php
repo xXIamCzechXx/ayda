@@ -11,10 +11,22 @@ use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+/**
+ * DefaultController.php
+ *
+ * Author: Bc. Dominik Mach
+ *
+ * Copyright: (c) 2024 Bc. Dominik Mach. All rights reserved.
+ *
+ * This software is furnished under a license and may be used and copied
+ * only in accordance with the terms of such license and with the inclusion
+ * of the above copyright notice. This software or any other copies thereof
+ * may not be provided or otherwise made available to any other person.
+ */
 #[IsGranted("ROLE_USER")]
 class DefaultController extends AbstractController
 {
-    #[Route('/', name: 'app_default')]
+    #[Route('/', name: 'app_dashboard')]
     public function index(EntityManagerInterface $em, CacheInterface $cache, HttpClientInterface $httpClient): Response
     {
         $user = $em->getRepository(User::class)->findOneBy(['id' => 2]);
@@ -29,11 +41,11 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    #[Route('/dashboard', name: 'app_dashboard')]
-    public function dashboard(): Response
+    #[Route('/dashboard', name: 'app_kanban')]
+    public function kanban(): Response
     {
         return $this->render('default/kanban.html.twig', [
-            'controller_name' => 'DefaultController',
+            'controller_name' => 'Kanban',
         ]);
     }
 
@@ -41,7 +53,23 @@ class DefaultController extends AbstractController
     public function statistics(): Response
     {
         return $this->render('default/statistics.html.twig', [
-            'controller_name' => 'DefaultController',
+            'controller_name' => 'Statistics',
+        ]);
+    }
+
+    #[Route('/overview', name: 'app_overview')]
+    public function overview(): Response
+    {
+        return $this->render('default/overview.html.twig', [
+            'controller_name' => 'Overview',
+        ]);
+    }
+
+    #[Route('/account', name: 'app_account')]
+    public function account(): Response
+    {
+        return $this->render('default/account.html.twig', [
+            'controller_name' => 'Account',
         ]);
     }
 }

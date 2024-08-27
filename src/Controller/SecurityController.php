@@ -7,13 +7,25 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+/**
+ * DefaultController.php
+ *
+ * Author: Bc. Dominik Mach
+ *
+ * Copyright: (c) 2024 Bc. Dominik Mach. All rights reserved.
+ *
+ * This software is furnished under a license and may be used and copied
+ * only in accordance with the terms of such license and with the inclusion
+ * of the above copyright notice. This software or any other copies thereof
+ * may not be provided or otherwise made available to any other person.
+ */
 class SecurityController extends AbstractController
 {
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
          if ($this->getUser()) {
-             return $this->redirectToRoute('app_default');
+             return $this->redirectToRoute('app_dashboard');
          }
 
         $error = $authenticationUtils->getLastAuthenticationError(); // Get the login error if there is one

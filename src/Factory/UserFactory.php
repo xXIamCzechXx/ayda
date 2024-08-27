@@ -55,6 +55,8 @@ final class UserFactory extends ModelFactory
             'firstName' => self::faker()->firstName(1), // 1 female / 0 male
             'lastName' => self::faker()->lastName(0), // 1 female / 0 male
             'plainPassword' => 'admin123',
+            'createdAt' => self::faker()->dateTimeBetween('-7 months', '-10 days'),
+            'updatedAt' => self::faker()->dateTimeBetween('-10 days', '-1 day'),
             'roles' => [],
         ];
     }

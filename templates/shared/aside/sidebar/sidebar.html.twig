@@ -2,7 +2,7 @@
     <aside data-turbo="true" class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark" id="sidenav-main" style="overflow: hidden">
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href="{{ path('app_default') }}">
+            <a class="navbar-brand m-0" href="{{ path('app_dashboard') }}">
                 <img src="{{ asset('build/images/logo/logo-ct.png') }}" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold text-white">Ayda</span>
             </a>
@@ -10,122 +10,6 @@
         <hr class="horizontal light mt-0 mb-2">
         <div class="collapse navbar-collapse  w-auto h-auto" id="sidenav-collapse-main" style="overflow: hidden;">
             {{ knp_menu_render('sidebar') }}
-            <ul class="navbar-nav">
-                <li class="nav-item mb-2 mt-0">
-                    <a href="javascript:" class="nav-link text-white" aria-controls="ProfileNav" role="button" data-action="click->hello#toggle">
-                        <img src="{{ asset('build/images/material-dashboard/img/team-3.jpg') }}" class="avatar">
-                        <span class="nav-link-text ms-2 ps-1">Brooklyn Alice</span>
-                    </a>
-                    <div class="collapse collapse-custom" id="ProfileNav" style="">
-                        <ul class="nav ">
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="javascript:">
-                                    <span class="sidenav-mini-icon"> MP </span>
-                                    <span class="sidenav-normal  ms-3  ps-1"> My Profile </span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white " href="javascript:">
-                                    <span class="sidenav-mini-icon"> S </span>
-                                    <span class="sidenav-normal  ms-3  ps-1"> Settings </span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white " href="javascript:">
-                                    <span class="sidenav-mini-icon"> L </span>
-                                    <span class="sidenav-normal  ms-3  ps-1"> Logout </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <hr class="horizontal light mt-0">
-                <li class="nav-item">
-                    <a href="javascript:" class="nav-link text-white custom-collapse" role="button" data-action="click->hello#toggle">
-                        <i class="material-icons-round opacity-10">dashboard</i>
-                        <span class="nav-link-text ms-2 ps-1">Dashboards</span>
-                    </a>
-                    <div class="collapse" id="dashboardsExamples">
-                        <ul class="nav "> {# show #}
-                            <li class="nav-item ">
-                                {% set active = false %}
-                                {% block home %}
-                                    {{ include('shared/aside/sidebar/items/item.html.twig', {'name': 'Dashboard', 'link': path('app_default'), 'active': active, 'icon': 'dashboard'}) }}
-                                {% endblock %}
-                            </li>
-                            <li class="nav-item ">
-                                {% set active = false %}
-                                {% block statistics %}
-                                    {{ include('shared/aside/sidebar/items/item.html.twig', {'name': 'Statistics', 'link': path('app_statistics'), 'active': active, 'icon': 'statistics'}) }}
-                                {% endblock %}
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item mt-3">
-                    <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder text-white">PAGES</h6>
-                </li>
-                <li class="nav-item">
-                    <a href="javascript:" class="nav-link text-white" data-action="click->hello#toggle">
-                        <i class="material-icons-round">image</i>
-                        <span class="nav-link-text ms-2 ps-1">Pages</span>
-                    </a>
-                    <div class="collapse" id="pagesExamples">
-                        <ul class="nav "> {# show #}
-                            <li class="nav-item ">
-                                {% set active = false %}
-                                {% block dashboard %}
-                                    {{ include('shared/aside/sidebar/items/item.html.twig', {'name': 'Přehled', 'link': path('app_dashboard'), 'active': active, 'icon': 'person'}) }}
-                                {% endblock %}
-                                <div class="collapse " id="profileExample">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link text-white " href="javascript:">
-                                                <span class="sidenav-mini-icon"> P </span>
-                                                <span class="sidenav-normal  ms-2  ps-1"> Profile Overview </span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link text-white " href="javascript:">
-                                                <span class="sidenav-mini-icon"> A </span>
-                                                <span class="sidenav-normal  ms-2  ps-1"> All Projects </span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link text-white " href="javascript:">
-                                                <span class="sidenav-mini-icon"> M </span>
-                                                <span class="sidenav-normal  ms-2  ps-1"> Messages </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link text-white" href="javascript:" data-action="click->hello#toggle">
-                                    <span class="sidenav-mini-icon"> U </span>
-                                    <span class="sidenav-normal  ms-2  ps-1"> Users <b class="caret"></b></span>
-                                </a>
-                                <div class="collapse" id="usersExample">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link text-white " href="javascript:">
-                                                <span class="sidenav-mini-icon"> R </span>
-                                                <span class="sidenav-normal  ms-2  ps-1"> Reports </span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link text-white " href="javascript:">
-                                                <span class="sidenav-mini-icon"> N </span>
-                                                <span class="sidenav-normal  ms-2  ps-1"> New User </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
         </div>
 {#        <div class="sidenav-header position-absolute w-100 bottom-0">#}
 {#            <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>#}

@@ -1,12 +1,34 @@
-.kanban-container {
-  margin: 0 !important;
-}
+// ----------------------------------------------------------------------------
+// Copyright Bc. Dominik Mach
+// All rights reserved
+// ----------------------------------------------------------------------------
 
 .navbar-nav .current > .nav-link:first-child {
   background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%) !important;
 }
-
 .navbar-nav ul {
   list-style-type: none;
   padding: 0 !important;
 }
+// ⬇ Kanban styles
+#myKanban {
+  -ms-overflow-style: none;  /* for IE and Edge */
+  scrollbar-width: none;  /* for Firefox */
+  overflow-y: auto;
+}
+.kanban-container {
+  margin: 0 !important;
+  -ms-overflow-style: none;  /* for IE and Edge */
+  scrollbar-width: none;  /* for Firefox */
+  overflow-y: auto;
+}
+#myKanban::-webkit-scrollbar {
+  display: none;  /* for Chrome, Safari, Opera*/
+}
+.kanban-container::-webkit-scrollbar {
+  display: none;  /* for Chrome, Safari, Opera*/
+}
+.card.card-plain {
+  padding-bottom: 12px;
+}
+// ⬆ Kanban

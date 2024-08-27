@@ -2,44 +2,70 @@
 
 namespace App\Menu;
 
+use App\Entity\User;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 
 final class Builder
 {
     private FactoryInterface $factory;
 
-    public function __construct(FactoryInterface $factory)
+    private Security $security;
+
+    public function __construct(FactoryInterface $factory, Security $security)
     {
         $this->factory = $factory;
+        $this->security = $security;
     }
 
     public function createSidebarMenu(array $options): ItemInterface
     {
+        /** @var User $user */
+        $user = $this->security->getUser();
         $menu = $this->factory->createItem('navbar')->setChildrenAttribute('class', 'navbar-nav');
 
-        $menu->addChild('Hlavní strana', ['route' => 'app_default'])
+        // Instead of name in label it will be rendered from $app->getUser()->getName()
+        $menu->addChild('Account', ['route' => 'app_account'])
+            ->setAttribute('class', 'nav-item mb-2 mt-0')
+            ->setAttribute('role', 'button')
+            ->setLinkAttribute('class', 'nav-link text-white custom-collapse')
+            //->setLinkAttribute('data-action', 'click->hello#toggle')
+            ->setExtra('image', $user->getAvatarPath())
+            //->setLabelAttribute('class', 'nav-link text-white')
+            //->setChildrenAttribute('class', 'nav-link text-white')
+            ->setExtra('break', true)
+            ->setLabel($user->getFullName());
+
+        $menu->addChild('Nástěnka', ['route' => ''])
+             ->setAttribute('class', 'nav-item mb-2 mt-0')
+             ->setAttribute('role', 'button')
+             ->setLinkAttribute('data-action', 'click->hello#toggle')
+             ->setLinkAttribute('class', 'nav-link text-white custom-collapse')
+             ->setExtra('break', true)
+             ->setLabel('dashboard');
+
+        $menu['Nástěnka']->addChild('Nástěnka', ['route' => 'app_dashboard'])
              ->setAttribute('class', 'nav-item')
              ->setAttribute('role', 'button')
              ->setLinkAttribute('class', 'nav-link text-white custom-collapse')
-             //->setLinkAttribute('data-action', 'click->hello#toggle')
-             //->setExtra('image', '/path/to/your/image.jpg');
-             //->setLabelAttribute('class', 'nav-link text-white')
-             //->setChildrenAttribute('class', 'nav-link text-white')
-             ->setExtra('first_level', true)
-             ->setLabel('dashboard');
+             ->setLabel('N');
 
-        $menu['Hlavní strana']->addChild('Statistiky', ['route' => 'app_statistics'])
+        $menu['Nástěnka']->addChild('Aktivity', ['route' => 'app_kanban'])
             ->setAttribute('class', 'nav-item')
             ->setLinkAttribute('class', 'nav-link text-white')
-            ->setExtra('second_level', true)
-            ->setLabel('S');
-
-        $menu['Hlavní strana']->addChild('Aktivity', ['route' => 'app_dashboard'])
-            ->setAttribute('class', 'nav-item')
-            ->setLinkAttribute('class', 'nav-link text-white')
-            ->setExtra('second_level', true)
             ->setLabel('A');
+
+        $menu['Nástěnka']->addChild('Přehled', ['route' => 'app_overview'])
+             ->setAttribute('class', 'nav-item')
+             ->setAttribute('role', 'button')
+             ->setLinkAttribute('class', 'nav-link text-white custom-collapse')
+             ->setLabel('P');
+
+        $menu['Nástěnka']->addChild('Statistiky', ['route' => 'app_statistics'])
+            ->setAttribute('class', 'nav-item')
+            ->setLinkAttribute('class', 'nav-link text-white')
+            ->setLabel('S');
 
 //        // access services from the container!
 //        $em = $this->container->get('doctrine')->getManager();
@@ -52,13 +78,12 @@ final class Builder
 //        ]);
 
         // create another menu item
-        $menu->addChild('About Me', ['route' => 'app_dashboard']);
+//        $menu->addChild('About Me', ['route' => 'app_kanban']);
         // you can also add sub levels to your menus as follows
-        $menu['About Me']->addChild('Edit profile', ['route' => 'app_dashboard']);
+//        $menu['About Me']->addChild('Edit profile', ['route' => 'app_kanban']);
 
         // ... add more children
 
-        dump($menu);
         return $menu;
     }
 }

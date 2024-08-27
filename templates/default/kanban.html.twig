@@ -2,49 +2,40 @@
 
 {% block title %}Kanban{% endblock %}
 
-{% block aside %}
-    {% embed 'shared/aside/sidebar/sidebar.html.twig' %}
-        {% block dashboard %} {# If you make new module, just rewrite name of its block here and add it to sidebar.html.twig #}
-            {% set active = true %}
-            {{ parent() }}
-        {% endblock %}
-    {% endembed %}
-{% endblock %}
-
 {% block body %}
-    <div class="container-fluid {# py-4 #}">
-{#        <div class="d-flex m-3">#}
-{#            <div class="ms-auto d-flex">#}
-{#                <div class="pe-4 mt-1 position-relative">#}
-{#                    <p class="text-secondary text-xs font-weight-bold mb-2">Team members:</p>#}
-{#                    <div class="d-flex align-items-center justify-content-center">#}
-{#                        <div class="avatar-group">#}
-{#                            <a href="javascript:" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Rowland">#}
-{#                                <img alt="Image placeholder" src="{{ asset('build/images/material-dashboard/img/team-1.jpg') }}">#}
-{#                            </a>#}
-{#                            <a href="javascript:" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Audrey Love">#}
-{#                                <img alt="Image placeholder" src="{{ asset('build/images/material-dashboard/img/team-2.jpg') }}" class="rounded-circle">#}
-{#                            </a>#}
-{#                            <a href="javascript:" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Michael Lewis">#}
-{#                                <img alt="Image placeholder" src="{{ asset('build/images/material-dashboard/img/team-3.jpg') }}" class="rounded-circle">#}
-{#                            </a>#}
-{#                            <a href="javascript:" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Lucia Linda">#}
-{#                                <img alt="Image placeholder" src="{{ asset('build/images/material-dashboard/img/team-4.jpg') }}" class="rounded-circle">#}
-{#                            </a>#}
-{#                            <a href="javascript:" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ronald Miller">#}
-{#                                <img alt="Image placeholder" src="{{ asset('build/images/material-dashboard/img/team-5.jpg') }}" class="rounded-circle">#}
-{#                            </a>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <hr class="vertical dark mt-0">#}
-{#                </div>#}
-{#                <div class="ps-4">#}
-{#                    <button class="btn bg-gradient-info btn-icon-only mb-0 mt-3" data-toggle="modal" data-target="#new-board-modal">#}
-{#                        <i class="material-icons text-lg">add</i>#}
-{#                    </button>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
+    <div class="container-fluid py-4">
+        <div class="d-flex m-3">
+            <div class="ms-auto d-flex">
+                <div class="pe-4 mt-1 position-relative">
+                    <p class="text-secondary text-xs font-weight-bold mb-2">Team members:</p>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="avatar-group">
+                            <a href="javascript:" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Rowland">
+                                <img alt="Image placeholder" src="{{ asset('build/images/material-dashboard/img/team-1.jpg') }}">
+                            </a>
+                            <a href="javascript:" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Audrey Love">
+                                <img alt="Image placeholder" src="{{ asset('build/images/material-dashboard/img/team-2.jpg') }}" class="rounded-circle">
+                            </a>
+                            <a href="javascript:" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Michael Lewis">
+                                <img alt="Image placeholder" src="{{ asset('build/images/material-dashboard/img/team-3.jpg') }}" class="rounded-circle">
+                            </a>
+                            <a href="javascript:" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Lucia Linda">
+                                <img alt="Image placeholder" src="{{ asset('build/images/material-dashboard/img/team-4.jpg') }}" class="rounded-circle">
+                            </a>
+                            <a href="javascript:" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ronald Miller">
+                                <img alt="Image placeholder" src="{{ asset('build/images/material-dashboard/img/team-5.jpg') }}" class="rounded-circle">
+                            </a>
+                        </div>
+                    </div>
+                    <hr class="vertical dark mt-0">
+                </div>
+                <div class="ps-4">
+                    <button class="btn bg-gradient-info btn-icon-only mb-0 mt-3" data-toggle="modal" data-target="#new-board-modal">
+                        <i class="material-icons text-lg">add</i>
+                    </button>
+                </div>
+            </div>
+        </div>
         <div class="mt-3 kanban-container">
             <div class="py-2 min-vh-100 d-inline-flex" style="overflow-x: auto">
                 <div id="myKanban" data-controller="kanban"></div>

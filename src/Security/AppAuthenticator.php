@@ -23,7 +23,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator implements Authent
     use TargetPathTrait;
 
     public const LOGIN_ROUTE = 'app_login';
-    public const HOME_ROUTE = 'app_default';
+    public const HOME_ROUTE = 'app_dashboard';
 
     public function __construct(private readonly UrlGeneratorInterface $urlGenerator){}
 

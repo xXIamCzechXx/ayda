@@ -136,7 +136,7 @@ export default class extends Controller {
     }
 
     prepareMenu() {
-        let activeLink = $('.nav-link.active');
+        let activeLink = $('.nav-item.current');
         if (activeLink !== null && activeLink.closest('.collapse') !== null) {
             let parent = activeLink.closest('.collapse');
             parent.addClass('show');
@@ -147,7 +147,7 @@ export default class extends Controller {
     }
 
     connect() {
-        this.prepareMenu();
+        this.prepareMenu(); // Collapse current menu when its located inside parent menu
 
         (function() {
             let isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;

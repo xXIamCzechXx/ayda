@@ -2,15 +2,6 @@
 
 {% block title %}Statistics{% endblock %}
 
-{% block aside %}
-    {% embed 'shared/aside/sidebar/sidebar.html.twig' %}
-        {% block statistics %} {# If you make new module, just rewrite name of its block here and add it to sidebar.html.twig #}
-            {% set active = true %}
-            {{ parent() }}
-        {% endblock %}
-    {% endembed %}
-{% endblock %}
-
 {% block body %}
     <div class="container-fluid py-4" data-controller="chart"> {# When template contains chart it must be loaded via chart data-controller #}
         <div class="row">

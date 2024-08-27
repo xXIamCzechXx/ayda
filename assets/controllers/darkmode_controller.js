@@ -6,6 +6,11 @@ import { Controller } from '@hotwired/stimulus';
  */
 export default class extends Controller {
 
+    connect() {
+        // $('#dark-version').prop('checked', false);
+        $('#dark-version').click();
+        $('#dark-version').click();
+    }
     /**
      * Method that switches the dark mode
      */

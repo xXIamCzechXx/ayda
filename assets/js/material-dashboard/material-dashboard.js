@@ -1103,15 +1103,15 @@ function checkPasswordMatch(input1, input2) {
 }
 
 
-// Event Listeners TODO::Form doesnt exists, uncomment after it works
-// form.addEventListener('submit', function(e) {
-//   e.preventDefault();
-//   checkRequired([username, email, password, password2]);
-//   checkLength(username, 3, 15);
-//   checkLength(password, 6, 25);
-//   checkEmail(email);
-//   checkPasswordMatch(password, password2);
-// });
+//Event Listeners
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  checkRequired([username, email, password, password2]);
+  checkLength(username, 3, 15);
+  checkLength(password, 6, 25);
+  checkEmail(email);
+  checkPasswordMatch(password, password2);
+});
 
 var material = {
   initFullCalendar: function() {
