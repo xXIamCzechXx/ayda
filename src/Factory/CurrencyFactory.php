@@ -3,31 +3,12 @@
 namespace App\Factory;
 
 use App\Entity\Currency;
-use App\Repository\CurrencyRepository;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @extends ModelFactory<Currency>
- *
- * @method        Currency|Proxy                     create(array|callable $attributes = [])
- * @method static Currency|Proxy                     createOne(array $attributes = [])
- * @method static Currency|Proxy                     find(object|array|mixed $criteria)
- * @method static Currency|Proxy                     findOrCreate(array $attributes)
- * @method static Currency|Proxy                     first(string $sortedField = 'id')
- * @method static Currency|Proxy                     last(string $sortedField = 'id')
- * @method static Currency|Proxy                     random(array $attributes = [])
- * @method static Currency|Proxy                     randomOrCreate(array $attributes = [])
- * @method static CurrencyRepository|RepositoryProxy repository()
- * @method static Currency[]|Proxy[]                 all()
- * @method static Currency[]|Proxy[]                 createMany(int $number, array|callable $attributes = [])
- * @method static Currency[]|Proxy[]                 createSequence(iterable|callable $sequence)
- * @method static Currency[]|Proxy[]                 findBy(array $attributes)
- * @method static Currency[]|Proxy[]                 randomRange(int $min, int $max, array $attributes = [])
- * @method static Currency[]|Proxy[]                 randomSet(int $number, array $attributes = [])
+ * @extends PersistentProxyObjectFactory<Currency>
  */
-final class CurrencyFactory extends ModelFactory
+final class CurrencyFactory extends PersistentProxyObjectFactory
 {
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
@@ -36,7 +17,11 @@ final class CurrencyFactory extends ModelFactory
      */
     public function __construct()
     {
-        parent::__construct();
+    }
+
+    public static function class(): string
+    {
+        return Currency::class;
     }
 
     /**
@@ -44,29 +29,21 @@ final class CurrencyFactory extends ModelFactory
      *
      * @todo add your default values here
      */
-    protected function getDefaults(): array
+    protected function defaults(): array|callable
     {
         return [
-            'iso' => 'CZK',
-            'name' => 'Test',
-            'decimals' => 2,
-            'symbol' => 'Kč',
-            'decimalSeparator' => ',',
+            'iso' => self::faker()->text(16),
+            'name' => self::faker()->text(32),
         ];
     }
 
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
      */
-    protected function initialize(): self
+    protected function initialize(): static
     {
         return $this
             // ->afterInstantiate(function(Currency $currency): void {})
         ;
-    }
-
-    protected static function getClass(): string
-    {
-        return Currency::class;
     }
 }

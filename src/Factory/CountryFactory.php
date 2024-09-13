@@ -2,13 +2,13 @@
 
 namespace App\Factory;
 
-use App\Entity\User;
+use App\Entity\Country;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @extends PersistentProxyObjectFactory<User>
+ * @extends PersistentProxyObjectFactory<Country>
  */
-final class UserFactory extends PersistentProxyObjectFactory
+final class CountryFactory extends PersistentProxyObjectFactory
 {
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
@@ -21,7 +21,7 @@ final class UserFactory extends PersistentProxyObjectFactory
 
     public static function class(): string
     {
-        return User::class;
+        return Country::class;
     }
 
     /**
@@ -32,13 +32,9 @@ final class UserFactory extends PersistentProxyObjectFactory
     protected function defaults(): array|callable
     {
         return [
-            'createdAt' => self::faker()->dateTime(),
-            'email' => self::faker()->text(180),
-            'firstName' => self::faker()->text(128),
-            'lastName' => self::faker()->text(128),
-            'password' => self::faker()->text(),
-            'roles' => [],
-            'updatedAt' => self::faker()->dateTime(),
+            'currency' => CurrencyFactory::new(),
+            'iso' => self::faker()->text(11),
+            'name' => self::faker()->text(255),
         ];
     }
 
@@ -48,7 +44,7 @@ final class UserFactory extends PersistentProxyObjectFactory
     protected function initialize(): static
     {
         return $this
-            // ->afterInstantiate(function(User $user): void {})
+            // ->afterInstantiate(function(Country $country): void {})
         ;
     }
 }
