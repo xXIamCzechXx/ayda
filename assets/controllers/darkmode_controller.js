@@ -4,12 +4,109 @@ import { Controller } from '@hotwired/stimulus';
  * Dark mode Controller
  * Switches classic mode to dark and reverse
  */
-export default class extends Controller {
-
+export default class extends Controller
+{
     connect() {
-        // $('#dark-version').prop('checked', false);
-        $('#dark-version').click();
-        $('#dark-version').click();
+        if ($('#dark-mode-checkbox').attr('data-darkmode') === 'true') {
+            this.setDarkMode();
+        }
+        this.setSidebar();
+    }
+
+    setSidebar() {
+        $('#sidebarType .active').trigger('click');
+    }
+
+    setDarkMode() {
+        let input = $('#dark-mode-checkbox').find('input');
+        const body = document.getElementsByTagName('body')[0];
+        const hr = document.querySelectorAll('div:not(.sidenav) > hr');
+        const hr_card = document.querySelectorAll('div:not(.bg-gradient-dark) hr');
+        const text_btn = document.querySelectorAll('button:not(.btn) > .text-dark');
+        const text_span = document.querySelectorAll('span.text-dark, .breadcrumb .text-dark');
+        const text_span_white = document.querySelectorAll('span.text-white, .breadcrumb .text-white');
+        const text_strong = document.querySelectorAll('strong.text-dark');
+        const text_strong_white = document.querySelectorAll('strong.text-white');
+        const text_nav_link = document.querySelectorAll('a.nav-link.text-dark');
+        const text_nav_link_white = document.querySelectorAll('a.nav-link.text-white');
+        const secondary = document.querySelectorAll('.text-secondary');
+        const bg_gray_100 = document.querySelectorAll('.bg-gray-100');
+        const bg_gray_600 = document.querySelectorAll('.bg-gray-600');
+        const btn_text_dark = document.querySelectorAll('.btn.btn-link.text-dark, .material-icons.text-dark');
+        const btn_text_white = document.querySelectorAll('.btn.btn-link.text-white, .material-icons.text-white');
+        const card_border = document.querySelectorAll('.card.border');
+        const card_border_dark = document.querySelectorAll('.card.border.border-dark');
+        const mainContent_blur = document.querySelectorAll('.main-content .container-fluid .card');
+        const svg = document.querySelectorAll('g');
+
+        body.classList.add('dark-version');
+        for (let i = 0; i < hr.length; i++) {
+            if (hr[i].classList.contains('dark')) {
+                hr[i].classList.remove('dark');
+                hr[i].classList.add('light');
+            }
+        }
+        for (let i = 0; i < mainContent_blur.length; i++) {
+            if (mainContent_blur[i].classList.contains('blur')) {
+                mainContent_blur[i].classList.remove('blur', 'shadow-blur');
+            }
+        }
+        for (let i = 0; i < hr_card.length; i++) {
+            if (hr_card[i].classList.contains('dark')) {
+                hr_card[i].classList.remove('dark');
+                hr_card[i].classList.add('light');
+            }
+        }
+        for (let i = 0; i < text_btn.length; i++) {
+            if (text_btn[i].classList.contains('text-dark')) {
+                text_btn[i].classList.remove('text-dark');
+                text_btn[i].classList.add('text-white');
+            }
+        }
+        for (let i = 0; i < text_span.length; i++) {
+            if (text_span[i].classList.contains('text-dark')) {
+                text_span[i].classList.remove('text-dark');
+                text_span[i].classList.add('text-white');
+            }
+        }
+        for (let i = 0; i < text_strong.length; i++) {
+            if (text_strong[i].classList.contains('text-dark')) {
+                text_strong[i].classList.remove('text-dark');
+                text_strong[i].classList.add('text-white');
+            }
+        }
+        for (let i = 0; i < text_nav_link.length; i++) {
+            if (text_nav_link[i].classList.contains('text-dark')) {
+                text_nav_link[i].classList.remove('text-dark');
+                text_nav_link[i].classList.add('text-white');
+            }
+        }
+        for (let i = 0; i < secondary.length; i++) {
+            if (secondary[i].classList.contains('text-secondary')) {
+                secondary[i].classList.remove('text-secondary');
+                secondary[i].classList.add('text-white');
+                secondary[i].classList.add('opacity-8');
+            }
+        }
+        for (let i = 0; i < bg_gray_100.length; i++) {
+            if (bg_gray_100[i].classList.contains('bg-gray-100')) {
+                bg_gray_100[i].classList.remove('bg-gray-100');
+                bg_gray_100[i].classList.add('bg-gray-600');
+            }
+        }
+        for (let i = 0; i < btn_text_dark.length; i++) {
+            btn_text_dark[i].classList.remove('text-dark');
+            btn_text_dark[i].classList.add('text-white');
+        }
+        for (let i = 0; i < svg.length; i++) {
+            if (svg[i].hasAttribute('fill')) {
+                svg[i].setAttribute('fill', '#fff');
+            }
+        }
+        for (let i = 0; i < card_border.length; i++) {
+            card_border[i].classList.add('border-dark');
+        }
+        input.attr("checked", "true");
     }
     /**
      * Method that switches the dark mode
@@ -173,6 +270,7 @@ export default class extends Controller {
                 card_border_dark[i].classList.remove('border-dark');
             }
             this.element.removeAttribute("checked");
+            this.setSidebar();
         }
     };
 }

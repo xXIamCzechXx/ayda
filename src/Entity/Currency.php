@@ -5,12 +5,13 @@ namespace App\Entity;
 use App\Repository\CurrencyRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\UX\Turbo\Attribute\Broadcast;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 #[ORM\Entity(repositoryClass: CurrencyRepository::class)]
-#[Broadcast]
 class Currency
 {
+    use TimestampableEntity;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -30,6 +31,9 @@ class Currency
 
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $decimals = null;
+
+    #[ORM\Column(length: 16, nullable: true)]
+    private ?string $symbolPosition = null;
 
     public function getId(): ?int
     {
@@ -94,5 +98,27 @@ class Currency
         $this->decimals = $decimals;
 
         return $this;
+    }
+
+    public function getSymbolPosition(): ?string
+    {
+        return $this->symbolPosition;
+    }
+
+    public function setSymbolPosition(?string $symbolPosition): static
+    {
+        $this->symbolPosition = $symbolPosition;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return sprintf(
+            '%s (%s) %s',
+            $this->name,
+            $this->iso,
+            $this->symbol !== null ? $this->symbol: ''
+        );
     }
 }

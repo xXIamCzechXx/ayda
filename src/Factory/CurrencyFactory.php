@@ -32,8 +32,11 @@ final class CurrencyFactory extends PersistentProxyObjectFactory
     protected function defaults(): array|callable
     {
         return [
-            'iso' => self::faker()->text(16),
-            'name' => self::faker()->text(32),
+            'iso' => self::faker()->countryISOAlpha3(),
+            'name' => self::faker()->currencyCode(),
+            'decimals' => self::faker()->numberBetween(0, 2),
+            'symbolPosition' => 'right',
+            'decimalSeparator' => ',',
         ];
     }
 

@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use App\Enum\AppDesignEnum;
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -12,7 +14,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    use  TimestampableEntity;
+    use TimestampableEntity;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -29,7 +31,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private array $roles = [];
 
     /**
-     * @var string The hashed password
+     * @var string|null The hashed password
      */
     #[ORM\Column]
     private ?string $password = null;
@@ -44,6 +46,46 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 128, nullable: true)]
     private ?string $avatar = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $active = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $birthDate = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Currency $currency = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $degree = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $monthlyHours = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $holidayHours = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $hourlyWage = null;
+
+    #[ORM\Column(length: 11, nullable: true)]
+    private ?string $lang = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $workSince = null;
+
+    #[ORM\Column(enumType: AppDesignEnum::class)]
+    private ?AppDesignEnum $appDesign = AppDesignEnum::AUTO;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $appSidebarSpread = false;
+
+    #[ORM\Column(enumType: AppDesignEnum::class)]
+    private ?AppDesignEnum $appSidebarType = AppDesignEnum::AUTO;
 
     public function getId(): ?int
     {
@@ -146,7 +188,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getFullName(): ?string
     {
-        return $this->firstName . ' ' . $this->lastName;
+        return sprintf('%s %s %s',$this->degree, $this->firstName, $this->lastName);
     }
 
     public function getPlainPassword(): string
@@ -182,5 +224,176 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return 'build/images/avatars/empty.png';
+    }
+
+    public function isActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(?bool $active): static
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    public function getBirthDate(): ?\DateTimeInterface
+    {
+        return $this->birthDate;
+    }
+
+    public function setBirthDate(?\DateTimeInterface $birthDate): static
+    {
+        $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    public function getCurrency(): ?Currency
+    {
+        return $this->currency;
+    }
+
+    public function setCurrency(?Currency $currency): static
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+    public function getDegree(): ?string
+    {
+        return $this->degree;
+    }
+
+    public function setDegree(?string $degree): static
+    {
+        $this->degree = $degree;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getMonthlyHours(): ?int
+    {
+        return $this->monthlyHours;
+    }
+
+    public function setMonthlyHours(?int $monthlyHours): static
+    {
+        $this->monthlyHours = $monthlyHours;
+
+        return $this;
+    }
+
+    public function getHolidayHours(): ?int
+    {
+        return $this->holidayHours;
+    }
+
+    public function setHolidayHours(int $holidayHours): static
+    {
+        $this->holidayHours = $holidayHours;
+
+        return $this;
+    }
+
+    public function getHourlyWage(): ?float
+    {
+        return $this->hourlyWage;
+    }
+
+    public function setHourlyWage(?float $hourlyWage): static
+    {
+        $this->hourlyWage = $hourlyWage;
+
+        return $this;
+    }
+
+    public function getLang(): ?string
+    {
+        return $this->lang;
+    }
+
+    public function setLang(?string $lang): static
+    {
+        $this->lang = $lang;
+
+        return $this;
+    }
+
+    public function getWorkSince(): ?\DateTimeInterface
+    {
+        return $this->workSince;
+    }
+
+    public function setWorkSince(?\DateTimeInterface $workSince): static
+    {
+        $this->workSince = $workSince;
+
+        return $this;
+    }
+
+    public function getAppDesign(): ?AppDesignEnum
+    {
+        return $this->appDesign;
+    }
+
+    public function setAppDesign(AppDesignEnum $appDesign): static
+    {
+        $this->appDesign = $appDesign;
+
+        return $this;
+    }
+
+    public function isAppSidebarSpread(): ?bool
+    {
+        return $this->appSidebarSpread;
+    }
+
+    public function setAppSidebarSpread(?bool $appSidebarSpread): static
+    {
+        $this->appSidebarSpread = $appSidebarSpread;
+
+        return $this;
+    }
+
+    public function getAppSidebarClass(): string
+    {
+        return match ($this->appSidebarType) {
+            AppDesignEnum::AUTO => 'transparent',
+            AppDesignEnum::DARK => 'gradient-dark',
+            AppDesignEnum::LIGHT => 'white',
+            default => $this->appSidebarType->value,
+        };
+    }
+
+    public function getAppSidebarType(): ?AppDesignEnum
+    {
+        return $this->appSidebarType;
+    }
+
+    public function isAppSidebarTypeActive($type): bool
+    {
+        return $type === $this->appSidebarType->value;
+    }
+
+    public function setAppSidebarType(AppDesignEnum $appSidebarType): static
+    {
+        $this->appSidebarType = $appSidebarType;
+
+        return $this;
     }
 }

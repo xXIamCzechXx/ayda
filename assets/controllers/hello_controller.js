@@ -10,8 +10,8 @@ import { Chart } from 'chart.js/auto';
  *
  * Delete this file or adapt it for your use!
  */
-export default class extends Controller {
-
+export default class extends Controller
+{
     sidebarType() {
         let parent = event.currentTarget.parentElement.children;
         let color = event.currentTarget.getAttribute("data-class");
@@ -101,35 +101,6 @@ export default class extends Controller {
         }
     }
 
-    // Set Sidebar Color
-    sidebarColor(event) {
-        let parent = document.querySelector(".nav-link.active");
-        const color = event.currentTarget.dataset.color;
-        // let color = event.currentTarget.getAttribute("data-color");
-
-        console.log(parent.classList);
-
-        if (parent.classList.contains('bg-gradient-primary')) {
-            parent.classList.remove('bg-gradient-primary');
-        }
-        if (parent.classList.contains('bg-gradient-dark')) {
-            parent.classList.remove('bg-gradient-dark');
-        }
-        if (parent.classList.contains('bg-gradient-info')) {
-            parent.classList.remove('bg-gradient-info');
-        }
-        if (parent.classList.contains('bg-gradient-success')) {
-            parent.classList.remove('bg-gradient-success');
-        }
-        if (parent.classList.contains('bg-gradient-warning')) {
-            parent.classList.remove('bg-gradient-warning');
-        }
-        if (parent.classList.contains('bg-gradient-danger')) {
-            parent.classList.remove('bg-gradient-danger');
-        }
-        parent.classList.add('bg-gradient-' + color);
-    }
-
     toggle() {
         event.preventDefault();
         $(event.currentTarget.nextElementSibling).toggleClass('show');
@@ -148,6 +119,12 @@ export default class extends Controller {
 
     connect() {
         this.prepareMenu(); // Collapse current menu when its located inside parent menu
+        $('.select2').select2();
+        if (document.getElementById('choices-language')) {
+            let language = document.getElementById('choices-language');
+            const example = new Choices(language);
+            console.log(example);
+        }
 
         (function() {
             let isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
@@ -806,56 +783,54 @@ export default class extends Controller {
             }, 4500);
         }
 
-        window.onload = function() {
-            // Material Design Input function
-            let inputs = document.querySelectorAll('input');
+        // Material Design Input function
+        let inputs = document.querySelectorAll('input');
 
-            for (let i = 0; i < inputs.length; i++) {
-                if (inputs[i].hasAttribute('value')) {
-                    inputs[i].parentElement.classList.add('is-filled');
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[i].hasAttribute('value') || inputs[i].val !== '') {
+                inputs[i].parentElement.classList.add('is-filled');
+            }
+            inputs[i].addEventListener('focus', function(e) {
+                this.parentElement.classList.add('is-focused');
+            }, false);
+
+            inputs[i].onkeyup = function(e) {
+                if (this.value != "") {
+                    this.parentElement.classList.add('is-filled');
+                } else {
+                    this.parentElement.classList.remove('is-filled');
                 }
-                inputs[i].addEventListener('focus', function(e) {
-                    this.parentElement.classList.add('is-focused');
-                }, false);
+            };
 
-                inputs[i].onkeyup = function(e) {
-                    if (this.value != "") {
-                        this.parentElement.classList.add('is-filled');
-                    } else {
-                        this.parentElement.classList.remove('is-filled');
-                    }
-                };
+            inputs[i].addEventListener('focusout', function(e) {
+                if (this.value != "") {
+                    this.parentElement.classList.add('is-filled');
+                }
+                this.parentElement.classList.remove('is-focused');
+            }, false);
+        }
 
-                inputs[i].addEventListener('focusout', function(e) {
-                    if (this.value != "") {
-                        this.parentElement.classList.add('is-filled');
-                    }
-                    this.parentElement.classList.remove('is-focused');
-                }, false);
-            }
+        // Ripple Effect
+        let ripples = document.querySelectorAll('.btn');
 
-            // Ripple Effect
-            let ripples = document.querySelectorAll('.btn');
+        for (let i = 0; i < ripples.length; i++) {
+            ripples[i].addEventListener('click', function(e) {
+                let targetEl = e.target;
+                let rippleDiv = targetEl.querySelector('.ripple');
 
-            for (let i = 0; i < ripples.length; i++) {
-                ripples[i].addEventListener('click', function(e) {
-                    let targetEl = e.target;
-                    let rippleDiv = targetEl.querySelector('.ripple');
+                rippleDiv = document.createElement('span');
+                rippleDiv.classList.add('ripple');
+                rippleDiv.style.width = rippleDiv.style.height = Math.max(targetEl.offsetWidth, targetEl.offsetHeight) + 'px';
+                targetEl.appendChild(rippleDiv);
 
-                    rippleDiv = document.createElement('span');
-                    rippleDiv.classList.add('ripple');
-                    rippleDiv.style.width = rippleDiv.style.height = Math.max(targetEl.offsetWidth, targetEl.offsetHeight) + 'px';
-                    targetEl.appendChild(rippleDiv);
-
-                    rippleDiv.style.left = (e.offsetX - rippleDiv.offsetWidth / 2) + 'px';
-                    rippleDiv.style.top = (e.offsetY - rippleDiv.offsetHeight / 2) + 'px';
-                    rippleDiv.classList.add('ripple');
-                    setTimeout(function() {
-                        rippleDiv.parentElement.removeChild(rippleDiv);
-                    }, 600);
-                }, false);
-            }
-        };
+                rippleDiv.style.left = (e.offsetX - rippleDiv.offsetWidth / 2) + 'px';
+                rippleDiv.style.top = (e.offsetY - rippleDiv.offsetHeight / 2) + 'px';
+                rippleDiv.classList.add('ripple');
+                setTimeout(function() {
+                    rippleDiv.parentElement.removeChild(rippleDiv);
+                }, 600);
+            }, false);
+        }
 
         // flatpickr init
         if (document.querySelector('.datepicker')) {

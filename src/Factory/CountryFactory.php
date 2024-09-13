@@ -33,8 +33,8 @@ final class CountryFactory extends PersistentProxyObjectFactory
     {
         return [
             'currency' => CurrencyFactory::new(),
-            'iso' => self::faker()->text(11),
-            'name' => self::faker()->text(255),
+            'iso' => self::faker()->countryISOAlpha3(),
+            'name' => self::faker()->country(),
         ];
     }
 

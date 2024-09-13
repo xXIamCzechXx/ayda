@@ -21,7 +21,7 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body class="g-sidenav-show bg-gray-200 g-sidenav-pinned" data-controller="hello">
+    <body class="g-sidenav-show bg-gray-200 g-sidenav-{{ app.user and app.user.appSidebarSpread ? 'pinned' : 'hidden' }} {{ app.user ? app.user.appDesign.value ~ '-version' }}" data-controller="hello">
         {% block aside %}
             {% include('shared/aside/sidebar/sidebar.html.twig') %}
         {% endblock %}
@@ -53,8 +53,19 @@
             <script src="{{ asset('build/js/material-dashboard/plugins/perfect-scrollbar.min.js') }}" type="text/javascript"></script>
             <script src="{{ asset('build/js/material-dashboard/plugins/smooth-scrollbar.min.js') }}" type="text/javascript"></script>
             <script src="{{ asset('build/js/material-dashboard/plugins/dragula.min.js') }}" type="text/javascript"></script>
-            <script src="{{ asset('build/js/material-dashboard/plugins/jkanban.js') }}" type="text/javascript"></script>
             <script src="{{ asset('build/js/material-dashboard/plugins/chartjs.min.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('build/js/material-dashboard/plugins/choices.min.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('build/js/material-dashboard/plugins/dropzone.min.js') }}" type="text/javascript"></script>
+            {# TODO::START – Rewrite to js controller #}
+                <script type="text/javascript">
+                    document.addEventListener("DOMContentLoaded", function() {
+                        let elements = document.querySelectorAll('.choices-single');
+                        elements.forEach(function(element) {
+                            new Choices(element);
+                        });
+                    });
+                </script>
+            {# TODO::END #}
             {# <script async src="https://buttons.github.io/buttons.js"></script>#}
             {# <script src="{{ asset('build/js/material-dashboard/material-dashboard.js') }}" type="text/javascript"></script>#}
             {# <script src="{{ asset('build/js/material-dashboard/plugins/bootstrap-notify.js') }}" type="text/javascript"></script> #}

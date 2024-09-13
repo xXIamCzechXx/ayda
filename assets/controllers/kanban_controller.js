@@ -4,10 +4,10 @@ import { Controller } from '@hotwired/stimulus';
  * Charts Controller
  * Visualization of charts printed on pages
  */
-export default class extends Controller {
-
+export default class extends Controller
+{
     /**
-     * jkanban init
+     * JKanban init
      */
     connect() {
         (function() {

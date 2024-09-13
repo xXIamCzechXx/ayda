@@ -64,12 +64,4 @@ class DefaultController extends AbstractController
             'controller_name' => 'Overview',
         ]);
     }
-
-    #[Route('/account', name: 'app_account')]
-    public function account(): Response
-    {
-        return $this->render('default/account.html.twig', [
-            'controller_name' => 'Account',
-        ]);
-    }
 }

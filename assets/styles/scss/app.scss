@@ -2,9 +2,14 @@
 // Copyright Bc. Dominik Mach
 // All rights reserved
 // ----------------------------------------------------------------------------
-
+html {
+  scroll-behavior: smooth;
+}
 .navbar-nav .current > .nav-link:first-child {
-  background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%) !important;
+  background-image: linear-gradient(195deg, var(--bs-secondary) -10%, var(--bs-primary) 120%);
+}
+.navbar-nav .current > .nav-link:first-child:hover {
+  filter: contrast(1.2);
 }
 .navbar-nav ul {
   list-style-type: none;
@@ -30,5 +35,9 @@
 }
 .card.card-plain {
   padding-bottom: 12px;
+}
+#login-form label.form-label {
+  pointer-events: none;
+  z-index: 9;
 }
 // ⬆ Kanban

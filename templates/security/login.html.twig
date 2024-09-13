@@ -15,37 +15,63 @@
 {% endblock %}
 
 {% block body %}
-<form method="post">
-    <section>
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
-        <div class="page-header min-vh-100">
-            <div class="container">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent mt-4">
+        <div class="container">
+            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-white">
+                Ayda PRO ver. 1
+            </a>
+            <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon mt-2">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </span>
+            </button>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <main class="main-content  mt-0">
+        <div class="page-header align-items-start min-vh-100" style="background-image: url('https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80');">
+            <span class="mask bg-gradient-dark opacity-6"></span>
+            <div class="container my-auto">
                 <div class="row">
-                    <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
-                        <div class="position-relative h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url({{ asset('build/images/material-dashboard/img/illustrations/illustration-signin.jpg') }}); background-size: cover;"></div>
-                    </div>
-                    <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
-                        <div class="card-plain blur shadow-blur" style="padding: 24px;"> {# TODO::DELETE #}
-                            {% if error %}
-                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                            {% endif %}
-                            <div class="card-header text-center">
-                                <h4 class="font-weight-bolder">Přihlásit se</h4>
-                                <p class="mb-0">Vyplňte e-mail a heslo pro přihlášení</p>
+                    <div class="col-lg-4 col-md-8 col-12 mx-auto">
+                        <div class="card z-index-0 fadeIn3 fadeInBottom">
+                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                    <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Přihlášení</h4>
+                                    <div class="row mt-3">
+                                        <div class="col-2 text-center ms-auto">
+                                            <a class="btn btn-link px-3" href="javascript:;">
+                                                <i class="fa fa-facebook text-white text-lg"></i>
+                                            </a>
+                                        </div>
+                                        <div class="col-2 text-center px-1">
+                                            <a class="btn btn-link px-3" href="https://github.com/xXIamCzechXx/ayda" target="_blank">
+                                                <i class="fa fa-github text-white text-lg"></i>
+                                            </a>
+                                        </div>
+                                        <div class="col-2 text-center me-auto">
+                                            <a class="btn btn-link px-3" href="mailto:xXIamCzechXx@gmail.com">
+                                                <i class="fa fa-google text-white text-lg"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body mt-2">
-                                <form role="form">
+                            <div class="card-body">
+                                <form id="login-form" role="form" class="text-start" method="post">
+                                    {% if error %}
+                                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                    {% endif %}
                                     <div class="input-group input-group-outline mb-3">
                                         <label for="inputEmail" class="form-label">Email</label>
-                                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)" required autofocus>
+                                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" class="form-control" autofocus required >
                                     </div>
                                     <div class="input-group input-group-outline mb-3">
                                         <label for="inputPassword" class="form-label">Password</label>
-                                        <input type="password" name="password" id="inputPassword" autocomplete="current-password" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)" required>
+                                        <input type="password" name="password" id="inputPassword" autocomplete="current-password" class="form-control" required>
                                     </div>
                                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                                     <div class="form-check form-switch d-flex align-items-center mb-3">
@@ -53,28 +79,59 @@
                                         <label class="form-check-label mb-0 ms-3" for="rememberMe">Zapamatovat si mě</label>
                                     </div>
                                     <div class="text-center">
-                                         <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Přihlásit se</button>
-                                         {# <a type="button" href="{{ path('app_dashboard') }}" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Přihlásit se</a> #}
+                                        <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Přihlásit se</button>
                                     </div>
+                                    <p class="mt-4 text-sm text-center">
+                                        Mám potíže s přihlášením
+                                        <a href="javascript:;" class="text-primary text-gradient font-weight-bold">pomoc</a>
+                                    </p>
                                 </form>
-                            </div>
-                            <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                                <p class="mb-4 text-sm mx-auto">
-                                    Mám potíže s přihlášením
-                                    <a href="" class="text-primary text-gradient font-weight-bold">pomoc</a>
-                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {% block footer %}
+                <footer class="footer position-absolute bottom-2 py-2 w-100">
+                    <div class="container">
+                        <div class="row align-items-center justify-content-lg-between">
+                            <div class="col-12 col-md-6 my-auto">
+                                {% include('shared/footer/copyright.html.twig') %}
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                                    <li class="nav-item">
+                                        <a href="https://www.creative-tim.com/presentation" class="nav-link text-white" target="_blank">About Us</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="https://www.creative-tim.com/blog" class="nav-link text-white" target="_blank">Blog</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-white" target="_blank">License</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            {% endblock %}
         </div>
-    </section>
-</form>
-{% endblock %}
+    </main>
+    <script type="text/javascript">
+        // When input is focused add focused class for style
+        function focused(el) {
+            if (el.parentElement.classList.contains('input-group')) {
+                el.parentElement.classList.add('focused');
+            }
+        }
 
-{% block footer %}
-    {# Here you can modify footer #}
+        // When input is focused remove focused class for style
+        function defocused(el) {
+            if (el.parentElement.classList.contains('input-group')) {
+                el.parentElement.classList.remove('focused');
+            }
+        }
+    </script>
 {% endblock %}
 
 {% block rightbar %}

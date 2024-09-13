@@ -4,12 +4,12 @@ import { Controller } from '@hotwired/stimulus';
  * Charts Controller
  * Visualization of charts printed on pages
  */
-export default class extends Controller {
-
+export default class extends Controller
+{
     /**
-     * ...
+     * Default charts inicialization
      */
-    connect() {
+    connect(){
         let ctx = document.getElementById("chart-bars");
         if (ctx) {
             new Chart(ctx.getContext("2d"), {

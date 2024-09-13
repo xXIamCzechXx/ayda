@@ -5,6 +5,8 @@
  * (and its CSS file) in your base layout (base.html.twig).
  */
 import './bootstrap.js';
+import './plugins/select2/dist/js/select2.min';
+import './plugins/select2/dist/css/select2.min.css';
 import './styles/app.css';
 import './styles/scss/app.scss';
 
