@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Service;
 
 use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -28,7 +28,6 @@ class UploadHelper
      */
     public function uploadImage(UploadedFile $uploadedFile, string $dir = 'others', $oldFile = null): string
     {
-        // kernel.project_dir odkazuje do rootu webu
         $destination = $this->uploadsPath.'/'.$dir;
         $originalFileName = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
         $newFileName = Urlizer::urlize($originalFileName) . '.' . $uploadedFile->guessExtension();
@@ -49,11 +48,12 @@ class UploadHelper
     }
 
     /**
+     * @param string $folder
      * @param string $path
      * @return string
      */
-    public function getPublicPath(string $path): string
+    public function getPublicPath(string $folder, string $path): string
     {
-        return 'uploads/products/'.$path;
+        return sprintf('uploads/%s/%s', $folder, $path);
     }
 }

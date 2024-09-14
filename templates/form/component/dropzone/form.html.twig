@@ -1,0 +1,12 @@
+<form action="#" class="form-control dropzone {{ class }}"
+      data-controller="dropzone"
+      data-dropzone-url-value="{{ url }}"
+      data-max-files="{{ maxFiles }}">
+    {% if image is not null %}
+        <div class="dz-preview dz-file-preview">
+            <div class="dz-image">
+                <img src="{{ image }}" data-dz-remove alt="Image" />
+            </div>
+        </div>
+    {% endif %}
+</form>

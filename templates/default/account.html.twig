@@ -13,6 +13,7 @@
                     <div class="col-lg-3">
                         <div class="card position-sticky top-1">
                             <ul class="nav flex-column bg-white border-radius-lg p-3">
+                                <button class="btn bg-gradient-success w-100 mb-0 toast-btn" type="button" data-target="successToast">Success</button>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark d-flex" data-scroll="" href="#profile">
                                         <i class="material-icons text-lg me-2">person</i>
@@ -68,9 +69,16 @@
                         <!-- Card Profile -->
                         <div class="card card-body" id="profile">
                             <div class="row justify-content-center align-items-center">
-                                <div class="col-sm-auto col-4">
-                                    <div class="avatar avatar-xl position-relative">
-                                        <img src="{{ app.user.avatarPath }}" alt="{{ app.user.firstName }}" class="w-100 rounded-circle shadow-sm">
+                                <div class="col-sm-auto col-4" style="width: 120px;">
+                                    <div class="avatar avatar-xl position-relative m-0 p-0">
+                                        <div class="input-group input-group-dynamic mt-4 p-0" style="margin-left: 20px; width: 200px;">
+                                            {% include 'form/component/dropzone/form.html.twig' with {
+                                                'url': path('app_file_upload', {'folder': 'user', 'userId': app.user.id}),
+                                                'maxFiles': 1,
+                                                'image': app.user.avatarPath,
+                                                'class': 'my-account-image'
+                                            } %}
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-auto col-8 my-auto">
@@ -98,6 +106,15 @@
                         {{ form_start(form) }}
                             <!-- Card Basic Info -->
                             <div class="card mt-4" id="basic-info">
+                                {% for label, messages in app.flashes %}
+                                    <div class="flash-message">
+                                        {% for message in messages %}
+                                            <div class="alert alert-{{ label }}">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
                                 <div class="card-header">
                                     <h5>Basic Info</h5>
                                 </div>
@@ -126,15 +143,12 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-4 col-4">
+                                        <div class="col-sm-6 col-6">
                                             {{ form_label(form.roles) }}
                                             {{ form_widget(form.roles, {'attr': {'class': 'form-control select2'}}) }}
                                             {{ form_errors(form.roles) }}
                                         </div>
-                                        <div class="col-4">
-                                            <div action="/file-upload" class="form-control border dropzone" id="productImg"></div>
-                                        </div>
-                                        <div class="col-4 col-sm-4">
+                                        <div class="col-6 col-sm-6">
                                             <div class="row">
                                                 <div class="col-sm-5 col-5">
                                                     <label class="form-label mt-4 ms-0">Birth Date</label>
@@ -195,46 +209,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Card Change Password -->
-                            <div class="card mt-4" id="password">
-                                <div class="card-header">
-                                    <h5>Change Password</h5>
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="input-group input-group-outline">
-                                        <label class="form-label">Current password</label>
-                                        <input type="password" class="form-control">
-                                    </div>
-                                    <div class="input-group input-group-outline my-4">
-                                        <label class="form-label">New password</label>
-                                        <input type="password" class="form-control">
-                                    </div>
-                                    <div class="input-group input-group-outline">
-                                        <label class="form-label">Confirm New password</label>
-                                        <input type="password" class="form-control">
-                                    </div>
-                                    <h5 class="mt-5">Password requirements</h5>
-                                    <p class="text-muted mb-2">
-                                        Please follow this guide for a strong password:
-                                    </p>
-                                    <ul class="text-muted ps-4 mb-0 float-start">
-                                        <li>
-                                            <span class="text-sm">One special characters</span>
-                                        </li>
-                                        <li>
-                                            <span class="text-sm">Min 6 characters</span>
-                                        </li>
-                                        <li>
-                                            <span class="text-sm">One number (2 are recommended)</span>
-                                        </li>
-                                        <li>
-                                            <span class="text-sm">Change it often</span>
-                                        </li>
-                                    </ul>
-                                    <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Update password</button>
-                                </div>
-                            </div>
-                            <!-- Card Change Password -->
                             <div class="card mt-4" id="2fa">
                                 <div class="card-header d-flex">
                                     <h5 class="mb-0">Two-factor authentication</h5>
@@ -524,6 +498,9 @@
                                 </div>
                             </div>
                         {{ form_end(form) }}
+                        <!-- Card Change Password -->
+                            {% include 'security/password.html.twig' %}
+                        <!-- Card Change Password -->
                     </div>
                 </div>
             </div>

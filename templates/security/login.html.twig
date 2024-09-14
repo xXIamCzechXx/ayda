@@ -117,21 +117,6 @@
             {% endblock %}
         </div>
     </main>
-    <script type="text/javascript">
-        // When input is focused add focused class for style
-        function focused(el) {
-            if (el.parentElement.classList.contains('input-group')) {
-                el.parentElement.classList.add('focused');
-            }
-        }
-
-        // When input is focused remove focused class for style
-        function defocused(el) {
-            if (el.parentElement.classList.contains('input-group')) {
-                el.parentElement.classList.remove('focused');
-            }
-        }
-    </script>
 {% endblock %}
 
 {% block rightbar %}

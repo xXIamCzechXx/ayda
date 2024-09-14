@@ -16,6 +16,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use TimestampableEntity;
 
+    const DEFAULT_IMG_PATH = 'uploads/user/';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -218,12 +220,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getAvatarPath(): ?string
     {
         if (!empty($this->avatar)) {
-            if (file_exists('build/images/uploads/avatars/'.$this->avatar)) {
-                return 'build/images/uploads/avatars/'.$this->avatar;
+            if (file_exists(sprintf("%s%s", self::DEFAULT_IMG_PATH, $this->avatar))) {
+                return sprintf("%s%s", self::DEFAULT_IMG_PATH, $this->avatar);
             }
         }
 
-        return 'build/images/avatars/empty.png';
+        return 'build/images/user/empty.png';
+    }
+
+    public function getEmptyImagePath(): ?string
+    {
+        return 'build/images/user/empty.png';
     }
 
     public function isActive(): ?bool

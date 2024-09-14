@@ -36,22 +36,6 @@ class UserType extends AbstractType
             ])
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
-            ->add('avatar', FileType::class, [
-                'required' => false,
-                'label' => 'Upload Avatar',
-                'mapped' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'image/jpeg',
-                            'image/png',
-                            'image/gif',
-                        ],
-                        'mimeTypesMessage' => 'Please upload a valid image file (JPEG, PNG, GIF)',
-                    ])
-                ]
-            ])
             ->add('active', CheckboxType::class, ['required' => false])
 //            ->add('birthDate', DateType::class, ['widget' => 'single_text', 'required' => false])
             ->add('currency', EntityType::class, [
@@ -82,6 +66,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'attr' => ['enctype' => 'multipart/form-data'],
         ]);
     }
 }

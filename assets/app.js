@@ -5,11 +5,10 @@
  * (and its CSS file) in your base layout (base.html.twig).
  */
 import './bootstrap.js';
-import './plugins/select2/dist/js/select2.min';
-import './plugins/select2/dist/css/select2.min.css';
+import './plugins/select2/dist/js/select2.min'; // Documentation – https://github.com/tetranz/select2entity-bundle
+import './plugins/select2/dist/css/select2.min.css'; // Documentation – https://github.com/tetranz/select2entity-bundle
 import './styles/app.css';
 import './styles/scss/app.scss';
-
 // import './js/material-dashboard/material-dashboard.js'; // any JS you import will output into a single css file (app.js in this case)
 // import './styles/scss/material-dashboard.scss'; // any CSS you import will output into a single css file (app.css in this case)
 
@@ -21,7 +20,3 @@ window.$ = window.jQuery = $;
 document.addEventListener('turbo:before-cache', (event) => {
     // You can repair broken bootstrap here
 });
-
-$(document).ready(function () {
-    // console.log('Test jQuery'); TODO::DELETE
-})

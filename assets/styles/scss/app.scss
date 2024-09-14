@@ -15,6 +15,37 @@ html {
   list-style-type: none;
   padding: 0 !important;
 }
+.dz-message {
+  display: none;
+}
+.input-group-outline {
+  ul {
+    list-style: none;
+    position: absolute;
+    padding-left: 0;
+    top: 38px;
+    font-size: 13px;
+    color: var(--bs-danger);
+  }
+}
+.my-account-image {
+  background-image: none !important;
+  background: rgba(0, 0, 0, 0) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  .dz-size, .dz-filename {
+    display: none !important;
+  }
+  .dz-image, .dz-image img, .dz-preview {
+    width: 100px !important;
+    height: 100px !important;
+    margin: 0; padding: 0 !important;
+    background: rgba(0, 0, 0, 0) !important;
+  }
+  .dz-preview {
+    pointer-events: none;
+  }
+}
 // ⬇ Kanban styles
 #myKanban {
   -ms-overflow-style: none;  /* for IE and Edge */

@@ -1,5 +1,4 @@
 import { Controller } from '@hotwired/stimulus';
-import { Chart } from 'chart.js/auto';
 
 /*
  * This is an example Stimulus controller!
@@ -12,114 +11,10 @@ import { Chart } from 'chart.js/auto';
  */
 export default class extends Controller
 {
-    sidebarType() {
-        let parent = event.currentTarget.parentElement.children;
-        let color = event.currentTarget.getAttribute("data-class");
-        let body = document.querySelector("body");
-        let bodyWhite = document.querySelector("body:not(.dark-version)");
-        let bodyDark = body.classList.contains('dark-version');
-        let colors = [];
-
-        for (let i = 0; i < parent.length; i++) {
-            parent[i].classList.remove('active');
-            colors.push(parent[i].getAttribute('data-class'));
-        }
-
-        if (!event.currentTarget.classList.contains('active')) {
-            event.currentTarget.classList.add('active');
-        } else {
-            event.currentTarget.classList.remove('active');
-        }
-
-        let sidebar = document.querySelector('.sidenav');
-        for (let i = 0; i < colors.length; i++) {
-            sidebar.classList.remove(colors[i]);
-        }
-
-        sidebar.classList.add(color);
-
-        // Remove text-white/text-dark classes
-        if (color === 'bg-transparent' || color === 'bg-white') {
-            let textWhites = document.querySelectorAll('.sidenav .text-white');
-            for (let i = 0; i < textWhites.length; i++) {
-                textWhites[i].classList.remove('text-white');
-                textWhites[i].classList.add('text-dark');
-            }
-        } else {
-            let textDarks = document.querySelectorAll('.sidenav .text-dark');
-            for (let i = 0; i < textDarks.length; i++) {
-                textDarks[i].classList.add('text-white');
-                textDarks[i].classList.remove('text-dark');
-            }
-        }
-
-        if (color === 'bg-transparent' && bodyDark) {
-            let textDarks = document.querySelectorAll('.navbar-brand .text-dark');
-            for (let i = 0; i < textDarks.length; i++) {
-                textDarks[i].classList.add('text-white');
-                textDarks[i].classList.remove('text-dark');
-            }
-        }
-
-        if ((color === 'bg-transparent' || color === 'bg-white') && bodyWhite) {
-            let navbarBrand = document.querySelector('.navbar-brand-img');
-            let navbarBrandImg = navbarBrand.src;
-
-            if (navbarBrandImg.includes('logo-ct.png')) {
-                navbarBrand.src = navbarBrandImg.replace("logo-ct", "logo-ct-dark");;
-            }
-        } else {
-            let navbarBrand = document.querySelector('.navbar-brand-img');
-            let navbarBrandImg = navbarBrand.src;
-            if (navbarBrandImg.includes('logo-ct-dark.png')) {
-                navbarBrand.src = navbarBrandImg.replace("logo-ct-dark", "logo-ct");
-            }
-        }
-
-        if (color === 'bg-white' && bodyDark) {
-            let navbarBrand = document.querySelector('.navbar-brand-img');
-            let navbarBrandImg = navbarBrand.src;
-
-            if (navbarBrandImg.includes('logo-ct.png')) {
-                navbarBrand.src = navbarBrandImg.replace("logo-ct", "logo-ct-dark");
-            }
-        }
-    }
-
-    // Set Navbar Minimized
-    navbarMinimize(event) {
-        let sidenavShow = document.getElementsByClassName('g-sidenav-show')[0];
-
-        if (!event.currentTarget.getAttribute("checked")) {
-            sidenavShow.classList.remove('g-sidenav-pinned');
-            sidenavShow.classList.add('g-sidenav-hidden');
-            event.currentTarget.setAttribute("checked", "true");
-        } else {
-            sidenavShow.classList.remove('g-sidenav-hidden');
-            sidenavShow.classList.add('g-sidenav-pinned');
-            event.currentTarget.removeAttribute("checked");
-        }
-    }
-
-    toggle() {
-        event.preventDefault();
-        $(event.currentTarget.nextElementSibling).toggleClass('show');
-    }
-
-    prepareMenu() {
-        let activeLink = $('.nav-item.current');
-        if (activeLink !== null && activeLink.closest('.collapse') !== null) {
-            let parent = activeLink.closest('.collapse');
-            parent.addClass('show');
-            if (parent.closest() !== null) {
-                parent.closest().addClass('show');
-            }
-        }
-    }
-
     connect() {
         this.prepareMenu(); // Collapse current menu when its located inside parent menu
-        $('.select2').select2();
+        this.prepareSelect2(); // Set all inputs with class select2 to nice select
+
         if (document.getElementById('choices-language')) {
             let language = document.getElementById('choices-language');
             const example = new Choices(language);
@@ -1655,5 +1550,130 @@ export default class extends Controller
                 }
             }
         }
+    }
+
+    sidebarType() {
+        let parent = event.currentTarget.parentElement.children;
+        let color = event.currentTarget.getAttribute("data-class");
+        let body = document.querySelector("body");
+        let bodyWhite = document.querySelector("body:not(.dark-version)");
+        let bodyDark = body.classList.contains('dark-version');
+        let colors = [];
+
+        for (let i = 0; i < parent.length; i++) {
+            parent[i].classList.remove('active');
+            colors.push(parent[i].getAttribute('data-class'));
+        }
+
+        if (!event.currentTarget.classList.contains('active')) {
+            event.currentTarget.classList.add('active');
+        } else {
+            event.currentTarget.classList.remove('active');
+        }
+
+        let sidebar = document.querySelector('.sidenav');
+        for (let i = 0; i < colors.length; i++) {
+            sidebar.classList.remove(colors[i]);
+        }
+
+        sidebar.classList.add(color);
+
+        // Remove text-white/text-dark classes
+        if (color === 'bg-transparent' || color === 'bg-white') {
+            let textWhites = document.querySelectorAll('.sidenav .text-white');
+            for (let i = 0; i < textWhites.length; i++) {
+                textWhites[i].classList.remove('text-white');
+                textWhites[i].classList.add('text-dark');
+            }
+        } else {
+            let textDarks = document.querySelectorAll('.sidenav .text-dark');
+            for (let i = 0; i < textDarks.length; i++) {
+                textDarks[i].classList.add('text-white');
+                textDarks[i].classList.remove('text-dark');
+            }
+        }
+
+        if (color === 'bg-transparent' && bodyDark) {
+            let textDarks = document.querySelectorAll('.navbar-brand .text-dark');
+            for (let i = 0; i < textDarks.length; i++) {
+                textDarks[i].classList.add('text-white');
+                textDarks[i].classList.remove('text-dark');
+            }
+        }
+
+        if ((color === 'bg-transparent' || color === 'bg-white') && bodyWhite) {
+            let navbarBrand = document.querySelector('.navbar-brand-img');
+            let navbarBrandImg = navbarBrand.src;
+
+            if (navbarBrandImg.includes('logo-ct.png')) {
+                navbarBrand.src = navbarBrandImg.replace("logo-ct", "logo-ct-dark");;
+            }
+        } else {
+            let navbarBrand = document.querySelector('.navbar-brand-img');
+            let navbarBrandImg = navbarBrand.src;
+            if (navbarBrandImg.includes('logo-ct-dark.png')) {
+                navbarBrand.src = navbarBrandImg.replace("logo-ct-dark", "logo-ct");
+            }
+        }
+
+        if (color === 'bg-white' && bodyDark) {
+            let navbarBrand = document.querySelector('.navbar-brand-img');
+            let navbarBrandImg = navbarBrand.src;
+
+            if (navbarBrandImg.includes('logo-ct.png')) {
+                navbarBrand.src = navbarBrandImg.replace("logo-ct", "logo-ct-dark");
+            }
+        }
+    }
+
+    // Set Navbar Minimized
+    navbarMinimize(event) {
+        let sidenavShow = document.getElementsByClassName('g-sidenav-show')[0];
+
+        if (!event.currentTarget.getAttribute("checked")) {
+            sidenavShow.classList.remove('g-sidenav-pinned');
+            sidenavShow.classList.add('g-sidenav-hidden');
+            event.currentTarget.setAttribute("checked", "true");
+        } else {
+            sidenavShow.classList.remove('g-sidenav-hidden');
+            sidenavShow.classList.add('g-sidenav-pinned');
+            event.currentTarget.removeAttribute("checked");
+        }
+    }
+
+    /**
+     * Toggles the "show" class on the next sibling element of the current target element.
+     *
+     * @return {void}
+     */
+    toggle() {
+        event.preventDefault();
+        $(event.currentTarget.nextElementSibling).toggleClass('show');
+    }
+
+    /**
+     * Prepares the menu by applying necessary CSS classes to show the active links and their parent menus.
+     *
+     * @return {void} - This method does not return a value.
+     */
+    prepareMenu() {
+        let activeLink = $('.nav-item.current');
+        if (activeLink !== null && activeLink.closest('.collapse') !== null) {
+            let parent = activeLink.closest('.collapse');
+            parent.addClass('show');
+            if (parent.closest() !== null) {
+                parent.closest().addClass('show');
+            }
+        }
+    }
+
+    /**
+     * Initializes the Select2 library for all elements with the class "select2".
+     * This method should be called after the elements have been rendered in the DOM.
+     *
+     * @return {void} This method does not return a value.
+     */
+    prepareSelect2() {
+        $('.select2').select2();
     }
 }
