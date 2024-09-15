@@ -34,6 +34,7 @@ class UserController extends AbstractController
             $em->persist($user);
             $em->flush();
             $this->addFlash('success', 'User details have been updated');
+            return $this->redirectToRoute('app_account');
         }
 
         if ($passwordForm->isSubmitted() && $passwordForm->isValid()) {

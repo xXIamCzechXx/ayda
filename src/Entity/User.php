@@ -89,6 +89,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(enumType: AppDesignEnum::class)]
     private ?AppDesignEnum $appSidebarType = AppDesignEnum::AUTO;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Address $address = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -400,6 +403,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAppSidebarType(AppDesignEnum $appSidebarType): static
     {
         $this->appSidebarType = $appSidebarType;
+
+        return $this;
+    }
+
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(Address $address): static
+    {
+        // set the owning side of the relation if necessary
+        if ($address->getUser() !== $this) {
+            $address->setUser($this);
+        }
+
+        $this->address = $address;
 
         return $this;
     }

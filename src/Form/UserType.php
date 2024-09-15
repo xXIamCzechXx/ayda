@@ -36,7 +36,6 @@ class UserType extends AbstractType
             ])
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
-            ->add('active', CheckboxType::class, ['required' => false])
 //            ->add('birthDate', DateType::class, ['widget' => 'single_text', 'required' => false])
             ->add('currency', EntityType::class, [
                 'class' => Currency::class,
@@ -47,7 +46,13 @@ class UserType extends AbstractType
             ->add('monthlyHours', IntegerType::class, ['required' => false])
             ->add('holidayHours', IntegerType::class, ['required' => false])
             ->add('hourlyWage', TextType::class, ['required' => false])
-            ->add('lang', TextType::class, ['required' => false])
+            ->add('lang', ChoiceType::class, [
+                'choices' => [
+                    'Czech' => 'cz',
+                ],
+                'placeholder' => false,
+                'required' => true,
+            ])
 //            ->add('workSince', DateType::class, ['widget' => 'single_text', 'required' => false])
             ->add('appDesign', ChoiceType::class, [
                 'choices' => AppDesignEnum::cases(),
@@ -59,6 +64,9 @@ class UserType extends AbstractType
             ->add('appSidebarType', ChoiceType::class, [
                 'choices' => AppDesignEnum::cases(),
                 'choice_label' => fn(AppDesignEnum $enum) => $enum->name,
+            ])
+            ->add('address', AddressType::class, [
+                'label' => 'Address',
             ]);
     }
 
