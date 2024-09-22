@@ -35,7 +35,7 @@ final class Builder
             //->setLabelAttribute('class', 'nav-link text-white')
             //->setChildrenAttribute('class', 'nav-link text-white')
             ->setExtra('break', true)
-            ->setLabel($user->getFullName());
+            ->setLabel($user->getName());
 
         $menu->addChild('Nástěnka', ['route' => ''])
              ->setAttribute('class', 'nav-item mb-2 mt-0')

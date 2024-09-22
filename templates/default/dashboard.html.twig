@@ -19,7 +19,7 @@
                 <div class="col-auto my-auto">
                     <div class="h-100">
                         <h5 class="mb-1">
-                            {{ app.user.fullName }}
+                            {{ app.user.name }}
                         </h5>
                         <p class="mb-0 font-weight-normal text-sm">
                             CEO / Co-Founder
@@ -534,7 +534,6 @@
                             </div>
                         </div>
                     </div>
-                    {% dump(anniversary.anniversaries(5, 14)) %}
                     <div class="card mt-4 card-plain">
                         <div class="card-body p-3">
                             <div class="d-flex">
@@ -542,36 +541,26 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mt-4 card-plain">
-                        <div class="card-body p-3">
-                            <div class="d-flex">
-                                <div class="avatar avatar-lg">
-                                    <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
+                    {% for user in anniversary.upcomingAnniversaries %}
+                        {% set years = (date()|date('Y') - user.workSince|date('Y')) %}
+                        <div class="card mt-0 card-plain">
+                            <div class="card-body p-3">
+                                <div class="d-flex">
+                                    <div class="avatar avatar-lg">
+                                        {% dump(user.avatarPath) %}
+                                        {% dump(user.avatar) %}
+                                        <img alt="Image placeholder" src="{{ user.avatarPath }}">
+                                    </div>
+                                    <div class="ms-2 my-auto">
+                                        <h6 class="mb-0">{{ user.name }}</h6>
+                                        <p class="text-xs mb-0">Nástup: {{ user.workSince|date('d. m. Y') }}</p>
+                                    </div>
                                 </div>
-                                <div class="ms-2 my-auto">
-                                    <h6 class="mb-0">Klára Králová</h6>
-                                    <p class="text-xs mb-0">11:00 AM</p>
-                                </div>
+                                <p class="mb-0">Oslavuje s námi v <b>Ayda s.r.o.</b> <a href="javascript:;" class="text-primary">{{ years }}. rok</a></p>
+                                <p class="mb-0"></p>
                             </div>
-                            <p class="mb-0">Oslavuje v <b>Ayda s.r.o.</b> už <a href="javascript:;" class="text-primary">4 roky</a>.</p>
-                            <p class="mb-0"></p>
                         </div>
-                    </div>
-                    <div class="card mt-4 card-plain">
-                        <div class="card-body p-3">
-                            <div class="d-flex">
-                                <div class="avatar avatar-lg">
-                                    <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
-                                </div>
-                                <div class="ms-2 my-auto">
-                                    <h6 class="mb-0">Jakub Voženílek</h6>
-                                    <p class="text-xs mb-0">4:50 PM</p>
-                                </div>
-                            </div>
-                            <p class="mb-0">Oslavuje v <b>Ayda s.r.o.</b> už <a href="javascript:;" class="text-primary">2 roky</a>.</p>
-                            <p class="mb-0"></p>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="row">

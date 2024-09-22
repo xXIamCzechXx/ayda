@@ -15,34 +15,26 @@ class AnniversaryProvider
     }
 
     /**
-     * Retrieves user anniversaries within a specified date range from the current date.
+     * Get the first 5 users whose work anniversaries are coming up next.
      *
-     * @param int $maxResults Maximum number of results to return.
-     * @param int $range Number of days from today to consider for anniversaries.
-     * @return array List of users with anniversaries within the given range.
+     * @return User[]
+     * @param int $limit
      */
-    public function getAnniversaries(int $maxResults, int $range): array
+    public function getUpcomingAnniversaries(int $limit = 3): array
     {
         $today = new \DateTime();
-        $endDate = (clone $today)->add(new \DateInterval("P{$range}D"));
+        $todayString = $today->format('m-d');
 
-        $repository = $this->em->getRepository(User::class);
+        $users = $this->em->getRepository(User::class)->createQueryBuilder('u')
+            ->orderBy("CASE 
+                WHEN DATE_FORMAT(u.workSince, '%m-%d') >= :today
+                THEN DATE_FORMAT(u.workSince, '%m-%d')
+                ELSE CONCAT('12-', DATE_FORMAT(u.workSince, '%d')) 
+                END", 'ASC'
+            )
+            ->setParameter('today', $todayString)
+            ->setMaxResults($limit);
 
-        $query = $repository->createQueryBuilder('u')
-            ->where('DATE_FORMAT(u.createdAt, \'%m-%d\') BETWEEN :start AND :end')
-            ->setParameter('start', $today->format('m-d'))
-            ->setParameter('end', $endDate->format('m-d'))
-            ->setMaxResults($maxResults)
-            ->getQuery();
-
-        $users = $query->getResult();
-
-        $anniversaries = [];
-        foreach ($users as $user) {
-            $years = $today->diff($user->getCreatedAt())->y;
-            $anniversaries[] = ['user' => $user, 'years' => $years];
-        }
-
-        return $anniversaries;
+        return $users->getQuery()->getResult();
     }
 }

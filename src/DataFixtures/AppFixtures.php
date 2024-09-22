@@ -41,7 +41,7 @@ class AppFixtures extends Fixture
             'roles' => ['ROLE_ADMIN'],
             'currency' => $czkCurrency,
         ]);
-        UserFactory::createMany(5, [
+        UserFactory::createMany(20, [
             'currency' => $czkCurrency,
         ]);
 

@@ -41,6 +41,7 @@ final class UserFactory extends PersistentProxyObjectFactory
             'firstName' => self::faker()->firstName(1), // 1 female / 0 male
             'lastName' => self::faker()->lastName(0), // 1 female / 0 male
             'plainPassword' => 'admin123',
+            'avatar' => sprintf('team-%s.jpg', self::faker()->numberBetween(1, 8)),
             'createdAt' => self::faker()->dateTimeBetween('-7 months', '-10 days'),
             'updatedAt' => self::faker()->dateTimeBetween('-10 days', '-1 day'),
             'roles' => ["ROLE_USER"],
@@ -52,7 +53,7 @@ final class UserFactory extends PersistentProxyObjectFactory
             'holidayHours' => self::faker()->numberBetween(18, 32),
             'hourlyWage' => self::faker()->numberBetween(150, 340),
             'lang' => 'cz',
-            'workSince' => self::faker()->dateTimeBetween('-4 years', '-3 months'),
+            'workSince' => self::faker()->dateTimeBetween('-5 years', '-5 months'),
         ];
     }
 
