@@ -24,6 +24,8 @@ class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        \Locale::setDefault('en');
+
         $builder
             ->add('email', EmailType::class)
             ->add('roles', ChoiceType::class, [
@@ -36,7 +38,10 @@ class UserType extends AbstractType
             ])
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
-//            ->add('birthDate', DateType::class, ['widget' => 'single_text', 'required' => false])
+            ->add('birthDate', DateType::class, [
+                'widget' => 'single_text',
+                'required' => false,
+            ])
             ->add('currency', EntityType::class, [
                 'class' => Currency::class,
                 'choice_label' => 'name',
@@ -45,7 +50,7 @@ class UserType extends AbstractType
             ->add('description', TextareaType::class, ['required' => false])
             ->add('monthlyHours', IntegerType::class, ['required' => false])
             ->add('holidayHours', IntegerType::class, ['required' => false])
-            ->add('hourlyWage', TextType::class, ['required' => false])
+            ->add('hourlyWage', IntegerType::class, ['required' => false])
             ->add('lang', ChoiceType::class, [
                 'choices' => [
                     'Czech' => 'cz',

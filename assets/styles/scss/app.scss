@@ -8,6 +8,9 @@ html {
 .navbar-nav .current > .nav-link:first-child {
   background-image: linear-gradient(195deg, var(--bs-secondary) -10%, var(--bs-primary) 120%);
 }
+.navbar-nav .current > .nav-link:first-child {
+  color: white !important;
+}
 .navbar-nav .current > .nav-link:first-child:hover {
   filter: contrast(1.2);
 }

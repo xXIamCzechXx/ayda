@@ -133,7 +133,7 @@
                                         </div>
                                     </div>
                                     <div class="row mt-4">
-                                        <div class="col-6">
+                                        <div class="col-4">
                                             <div class="input-group input-group-static">
                                                 {{ form_label(form.email) }}
                                                 {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
@@ -141,31 +141,55 @@
                                             </div>
                                         </div>
                                         <div class="col-md-3 align-self-center">
-                                            {{ form_label(form.currency) }}
-                                            {{ form_widget(form.currency, {'attr': {'class': 'form-control single-choices'}}) }}
-                                            {{ form_errors(form.currency) }}
+                                            <div class="input-group input-group-static">
+                                                {{ form_label(form.currency) }}
+                                                {{ form_widget(form.currency, {'attr': {'class': 'form-control single-choices'}}) }}
+                                                {{ form_errors(form.currency) }}
+                                            </div>
                                         </div>
                                         <div class="col-md-3 align-self-center">
-                                            {{ form_label(form.lang) }}
-                                            {{ form_widget(form.lang, {'attr': {'class': 'form-control single-choices'}}) }}
-                                            {{ form_errors(form.lang) }}
+                                            <div class="input-group input-group-static">
+                                                {{ form_label(form.lang) }}
+                                                {{ form_widget(form.lang, {'attr': {'class': 'form-control single-choices'}}) }}
+                                                {{ form_errors(form.lang) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 align-self-center">
+                                            <div class="input-group input-group-static">
+                                                {{ form_label(form.birthDate) }}
+                                                {{ form_widget(form.birthDate, {'attr': {'class': 'form-control date-input'}}) }} {# Also "select2" class works #}
+                                                {{ form_errors(form.birthDate) }}
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row mt-4">
-                                        <div class="col-md-4 align-self-center">
-                                            {{ form_label(form.monthlyHours) }}
-                                            {{ form_widget(form.monthlyHours, {'attr': {'class': 'form-control'}}) }}
-                                            {{ form_errors(form.monthlyHours) }}
+                                        <div class="col-md-2 align-self-center">
+                                            <div class="input-group input-group-static">
+                                                {{ form_label(form.monthlyHours) }}
+                                                {{ form_widget(form.monthlyHours, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(form.monthlyHours) }}
+                                            </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            {{ form_label(form.hourlyWage) }}
-                                            {{ form_widget(form.hourlyWage, {'attr': {'class': 'form-control'}}) }}
-                                            {{ form_errors(form.hourlyWage) }}
+                                        <div class="col-md-2 align-self-center">
+                                            <div class="input-group input-group-static">
+                                                {{ form_label(form.hourlyWage) }}
+                                                {{ form_widget(form.hourlyWage, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(form.hourlyWage) }}
+                                            </div>
                                         </div>
-                                        <div class="col-md-4 align-self-center">
-                                            {{ form_label(form.holidayHours) }}
-                                            {{ form_widget(form.holidayHours, {'attr': {'class': 'form-control'}}) }}
-                                            {{ form_errors(form.holidayHours) }}
+                                        <div class="col-md-2 align-self-center">
+                                            <div class="input-group input-group-static">
+                                                {{ form_label(form.holidayHours) }}
+                                                {{ form_widget(form.holidayHours, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(form.holidayHours) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 align-self-center">
+                                            <div class="input-group input-group-static">
+                                                {{ form_label(form.roles) }}
+                                                {{ form_widget(form.roles, {'attr': {'class': 'form-control multiple-choices'}}) }} {# Also "select2" class works #}
+                                                {{ form_errors(form.roles) }}
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row mt-4">
@@ -181,29 +205,10 @@
                                         </div>
                                     </div>
                                     <div class="row mt-4">
-                                        <div class="col-md-4 form-check form-switch m-2">
+                                        <div class="col-md-12 form-check form-switch m-2">
                                             {{ form_label(form.appSidebarSpread) }}
                                             {{ form_widget(form.appSidebarSpread, {'attr': {'class': 'form-check-input'}}) }}
                                             {{ form_errors(form.appSidebarSpread) }}
-                                        </div>
-                                        <div class="col-sm-4 col-6">
-                                            {{ form_label(form.roles) }}
-                                            {{ form_widget(form.roles, {'attr': {'class': 'form-control multiple-choices'}}) }} {# Also "select2" class works #}
-                                            {{ form_errors(form.roles) }}
-                                        </div>
-                                        <div class="col-4 col-sm-6">
-                                            <div class="col-sm-5 col-5">
-                                                <label class="form-label mt-4 ms-0">Birth Date</label>
-                                                <select class="form-control" name="choices-month" id="choices-month"></select>
-                                            </div>
-                                            <div class="col-sm-4 col-3">
-                                                <label class="form-label mt-4 ms-0">&nbsp;</label>
-                                                <select class="form-control" name="choices-day" id="choices-day"></select>
-                                            </div>
-                                            <div class="col-sm-3 col-4">
-                                                <label class="form-label mt-4">&nbsp;</label>
-                                                <select class="form-control year-choices" name="choices-year" id="choices-year"></select>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="row mt-4">
@@ -213,7 +218,7 @@
                                             {{ form_errors(form.description) }}
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn bg-gradient-light btn-sm float-end mt-6 mb-0">Update</button>
+                                    <button type="submit" class="btn bg-gradient-light btn-sm float-end mt-3 mb-0">Update</button>
                                 </div>
                             </div>
                             <div class="card mt-4" id="accounts">
@@ -224,19 +229,50 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.address.city) }}
-                                                {{ form_widget(form.address.city, {'attr': {'class': 'form-control'}}) }}
-                                                {{ form_errors(form.address.city) }}
+                                                {{ form_label(form.address.streetName) }}
+                                                {{ form_widget(form.address.streetName, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(form.address.streetName) }}
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-2">
                                             <div class="input-group input-group-static">
                                                 {{ form_label(form.address.streetNumber) }}
                                                 {{ form_widget(form.address.streetNumber, {'attr': {'class': 'form-control'}}) }}
                                                 {{ form_errors(form.address.streetNumber) }}
                                             </div>
                                         </div>
+                                        <div class="col-4">
+                                            <div class="input-group input-group-static">
+                                                {{ form_label(form.address.city) }}
+                                                {{ form_widget(form.address.city, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(form.address.city) }}
+                                            </div>
+                                        </div>
                                     </div>
+                                    <div class="row mt-4">
+                                        <div class="col-4">
+                                            <div class="input-group input-group-static">
+                                                {{ form_label(form.address.phone) }}
+                                                {{ form_widget(form.address.phone, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(form.address.phone) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="input-group input-group-static">
+                                                {{ form_label(form.address.zip) }}
+                                                {{ form_widget(form.address.zip, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(form.address.zip) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="input-group input-group-static">
+                                                {{ form_label(form.address.country) }}
+                                                {{ form_widget(form.address.country, {'attr': {'class': 'form-control single-choice'}}) }}
+                                                {{ form_errors(form.address.country) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn bg-gradient-light btn-sm float-end mt-3 mb-0">Update</button>
                                 </div>
                             </div>
                         {{ form_end(form) }}
@@ -245,24 +281,25 @@
                             <div class="col-xl-6 col-md-6 mb-xl-0 mb-4">
                                 <div class="card bg-transparent shadow-xl">
                                     <div class="overflow-hidden position-relative border-radius-xl">
-                                        <img src="../../../assets/img/illustrations/pattern-tree.svg" class="position-absolute opacity-2 start-0 top-0 w-100 z-index-1 h-100" alt="pattern-tree">
+                                        <img src="{{ asset('build/images/material-dashboard/illustrations/pattern-tree.svg') }}" class="position-absolute opacity-2 start-0 top-0 w-100 z-index-1 h-100" alt="pattern-tree">
                                         <span class="mask bg-gradient-dark opacity-10"></span>
                                         <div class="card-body position-relative z-index-1 p-3">
-                                            <i class="material-icons text-white p-2">wifi</i>
+{#                                            <i class="material-icons text-white p-2">wifi</i>#}
+                                            <p class="text-white">Bankovní spojení</p>
                                             <h5 class="text-white mt-4 mb-5 pb-2">4562&nbsp;&nbsp;&nbsp;1122&nbsp;&nbsp;&nbsp;4594&nbsp;&nbsp;&nbsp;7852</h5>
                                             <div class="d-flex">
                                                 <div class="d-flex">
                                                     <div class="me-4">
-                                                        <p class="text-white text-sm opacity-8 mb-0">Card Holder</p>
-                                                        <h6 class="text-white mb-0">Jack Peterson</h6>
+                                                        <p class="text-white text-sm opacity-8 mb-0">Držitel účtu</p>
+                                                        <h6 class="text-white mb-0">{{ app.user.fullName }}</h6>
                                                     </div>
                                                     <div>
-                                                        <p class="text-white text-sm opacity-8 mb-0">Expires</p>
-                                                        <h6 class="text-white mb-0">11/22</h6>
+                                                        <p class="text-white text-sm opacity-8 mb-0">Kód banky</p>
+                                                        <h6 class="text-white mb-0">0800</h6>
                                                     </div>
                                                 </div>
                                                 <div class="ms-auto w-20 d-flex align-items-end justify-content-end">
-                                                    <img class="w-60 mt-2" src="../../../assets/img/logos/mastercard.png" alt="logo">
+                                                    <img class="w-60 mt-2" src="{{ asset('build/images/material-dashboard/img/logos/mastercard.png') }}" alt="logo">
                                                 </div>
                                             </div>
                                         </div>
@@ -319,14 +356,14 @@
                                         <div class="row">
                                             <div class="col-md-6 mb-md-0 mb-4">
                                                 <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
-                                                    <img class="w-10 me-3 mb-0" src="../../../assets/img/logos/mastercard.png" alt="logo">
+                                                    <img class="w-10 me-3 mb-0" src="{{ asset('build/images/material-dashboard/img/logos/mastercard.png') }}" alt="logo">
                                                     <h6 class="mb-0">****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852</h6>
                                                     <i class="material-icons ms-auto text-dark cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Card">edit</i>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
-                                                    <img class="w-10 me-3 mb-0" src="../../../assets/img/logos/visa.png" alt="logo">
+                                                    <img class="w-10 me-3 mb-0" src="{{ asset('build/images/material-dashboard/img/logos/visa.png') }}" alt="logo">
                                                     <h6 class="mb-0">****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;5248</h6>
                                                     <i class="material-icons ms-auto text-dark cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Card">edit</i>
                                                 </div>

@@ -29,7 +29,7 @@ class DefaultController extends AbstractController
     #[Route('/', name: 'app_dashboard')]
     public function index(EntityManagerInterface $em, CacheInterface $cache, HttpClientInterface $httpClient): Response
     {
-        $user = $em->getRepository(User::class)->findOneBy(['id' => 2]);
+        $user = $em->getRepository(User::class)->findOneBy(['email' => 'admin@admin.com']);
         $mixes = $cache->get('mixes_data', function() use ($httpClient) {
             $response = $httpClient->request('GET', 'https://raw.githubusercontent.com/SymfonyCasts/vinyl-mixes/main/mixes.json');
             return $response->toArray();

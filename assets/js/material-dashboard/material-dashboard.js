@@ -354,14 +354,14 @@ function sidebarType(a) {
     var navbarBrand = document.querySelector('.navbar-brand-img');
     var navbarBrandImg = navbarBrand.src;
 
-    if (navbarBrandImg.includes('logo-ct.png')) {
+    if (navbarBrandImg.includes('logo-ct.svg')) {
       var navbarBrandImgNew = navbarBrandImg.replace("logo-ct", "logo-ct-dark");
       navbarBrand.src = navbarBrandImgNew;
     }
   } else {
     var navbarBrand = document.querySelector('.navbar-brand-img');
     var navbarBrandImg = navbarBrand.src;
-    if (navbarBrandImg.includes('logo-ct-dark.png')) {
+    if (navbarBrandImg.includes('logo-ct-dark.svg')) {
       var navbarBrandImgNew = navbarBrandImg.replace("logo-ct-dark", "logo-ct");
       navbarBrand.src = navbarBrandImgNew;
     }
@@ -371,7 +371,7 @@ function sidebarType(a) {
     var navbarBrand = document.querySelector('.navbar-brand-img');
     var navbarBrandImg = navbarBrand.src;
 
-    if (navbarBrandImg.includes('logo-ct.png')) {
+    if (navbarBrandImg.includes('logo-ct.svg')) {
       var navbarBrandImgNew = navbarBrandImg.replace("logo-ct", "logo-ct-dark");
       navbarBrand.src = navbarBrandImgNew;
     }

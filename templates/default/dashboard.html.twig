@@ -62,19 +62,19 @@
                                 <p class="mb-0 text-sm" style="margin-top:6px;">Add story</p>
                             </div>
                             {% set profiles = [
-                                { "userName": "Abbie W", "img_src": "build/images/avatars/default_avatar.png", "is_primary": true },
-                                { "userName": "Boris U", "img_src": "build/images/avatars/default_avatar.png", "is_primary": true },
-                                { "userName": "Kay R", "img_src": "build/images/avatars/default_avatar.png", "is_primary": true },
-                                { "userName": "Tom M", "img_src": "build/images/avatars/default_avatar.png", "is_primary": true },
-                                { "userName": "Nicole N", "img_src": "build/images/avatars/default_avatar.png", "is_primary": true },
-                                { "userName": "Marie P", "img_src": "build/images/avatars/default_avatar.png", "is_primary": true },
-                                { "userName": "Bruce M", "img_src": "build/images/avatars/default_avatar.png", "is_primary": true },
-                                { "userName": "Sandra A", "img_src": "build/images/avatars/default_avatar.png", "is_primary": false },
-                                { "userName": "Katty L", "img_src": "build/images/avatars/default_avatar.png", "is_primary": false },
-                                { "userName": "Emma O", "img_src": "build/images/avatars/default_avatar.png", "is_primary": false },
-                                { "userName": "Lída S", "img_src": "build/images/avatars/default_avatar.png", "is_primary": false },
-                                { "userName": "David L", "img_src": "build/images/avatars/default_avatar.png", "is_primary": false },
-                                { "userName": "Robbie W", "img_src": "build/images/avatars/default_avatar.png", "is_primary": false },
+                                { "userName": "Abbie W", "img_src": "build/images/user/default_avatar.png", "is_primary": true },
+                                { "userName": "Boris U", "img_src": "build/images/user/default_avatar.png", "is_primary": true },
+                                { "userName": "Kay R", "img_src": "build/images/user/default_avatar.png", "is_primary": true },
+                                { "userName": "Tom M", "img_src": "build/images/user/default_avatar.png", "is_primary": true },
+                                { "userName": "Nicole N", "img_src": "build/images/user/default_avatar.png", "is_primary": true },
+                                { "userName": "Marie P", "img_src": "build/images/user/default_avatar.png", "is_primary": true },
+                                { "userName": "Bruce M", "img_src": "build/images/user/default_avatar.png", "is_primary": true },
+                                { "userName": "Sandra A", "img_src": "build/images/user/default_avatar.png", "is_primary": false },
+                                { "userName": "Katty L", "img_src": "build/images/user/default_avatar.png", "is_primary": false },
+                                { "userName": "Emma O", "img_src": "build/images/user/default_avatar.png", "is_primary": false },
+                                { "userName": "Lída S", "img_src": "build/images/user/default_avatar.png", "is_primary": false },
+                                { "userName": "David L", "img_src": "build/images/user/default_avatar.png", "is_primary": false },
+                                { "userName": "Robbie W", "img_src": "build/images/user/default_avatar.png", "is_primary": false },
                             ] %}
                             {% for profile in profiles %}
                                 <div class="col-lg-1 col-md-2 col-sm-3 col-4 text-center">
@@ -95,7 +95,7 @@
                         <div class="card-header d-flex align-items-center py-3">
                             <div class="d-block d-md-flex align-items-center">
                                 <a href="javascript:;">
-                                    <img src="{{ asset('build/images/avatars/default_avatar.png') }}" class="avatar" alt="profile-image">
+                                    <img src="{{ asset('build/images/user/default_avatar.png') }}" class="avatar" alt="profile-image">
                                 </a>
                                 <div class="mx-0 mx-md-3">
                                     <a href="javascript:;" class="text-dark font-weight-600 text-sm">John Snow</a>
@@ -136,13 +136,13 @@
                                     <div class="d-flex align-items-center justify-content-sm-end">
                                         <div class="d-flex align-items-center">
                                             <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-toggle="tooltip" data-original-title="Jessica Rowland">
-                                                <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}" class="">
+                                                <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}" class="">
                                             </a>
                                             <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-toggle="tooltip" data-original-title="Audrey Love">
-                                                <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}" class="rounded-circle">
+                                                <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}" class="rounded-circle">
                                             </a>
                                             <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-toggle="tooltip" data-original-title="Michael Lewis">
-                                                <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}" class="rounded-circle">
+                                                <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}" class="rounded-circle">
                                             </a>
                                         </div>
                                         <small class="ps-2 font-weight-bold">and 30+ more</small>
@@ -154,7 +154,7 @@
                             <div class="mb-1">
                                 <div class="d-flex">
                                     <div class="flex-shrink-0">
-                                        <img alt="Image placeholder" class="avatar rounded-circle" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                        <img alt="Image placeholder" class="avatar rounded-circle" src="{{ asset('build/images/user/default_avatar.png') }}">
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <h6 class="h5 mt-0">Michael Lewis</h6>
@@ -173,7 +173,7 @@
                                 </div>
                                 <div class="d-flex mt-3">
                                     <div class="flex-shrink-0">
-                                        <img alt="Image placeholder" class="avatar rounded-circle" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                        <img alt="Image placeholder" class="avatar rounded-circle" src="{{ asset('build/images/user/default_avatar.png') }}">
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <h6 class="h5 mt-0">Jessica Stones</h6>
@@ -192,7 +192,7 @@
                                 </div>
                                 <div class="d-flex mt-4">
                                     <div class="flex-shrink-0">
-                                        <img alt="Image placeholder" class="avatar rounded-circle me-3" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                        <img alt="Image placeholder" class="avatar rounded-circle me-3" src="{{ asset('build/images/user/default_avatar.png') }}">
                                     </div>
                                     <div class="flex-grow-1 my-auto">
                                         <div class="input-group input-group-static">
@@ -208,7 +208,7 @@
                         <div class="card-header d-flex align-items-center py-3">
                             <div class="d-block d-md-flex align-items-center">
                                 <a href="javascript:;">
-                                    <img src="{{ asset('build/images/avatars/default_avatar.png') }}" class="avatar" alt="profile-image">
+                                    <img src="{{ asset('build/images/user/default_avatar.png') }}" class="avatar" alt="profile-image">
                                 </a>
                                 <div class="mx-0 mx-md-3">
                                     <a href="javascript:;" class="text-dark font-weight-600 text-sm">John Snow</a>
@@ -248,13 +248,13 @@
                                     <div class="d-flex align-items-center justify-content-sm-end">
                                         <div class="d-flex align-items-center">
                                             <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-toggle="tooltip" data-original-title="Jessica Rowland">
-                                                <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}" class="">
+                                                <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}" class="">
                                             </a>
                                             <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-toggle="tooltip" data-original-title="Audrey Love">
-                                                <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}" class="rounded-circle">
+                                                <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}" class="rounded-circle">
                                             </a>
                                             <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-toggle="tooltip" data-original-title="Michael Lewis">
-                                                <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}" class="rounded-circle">
+                                                <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}" class="rounded-circle">
                                             </a>
                                         </div>
                                         <small class="ps-2 font-weight-bold">and 30+ more</small>
@@ -266,7 +266,7 @@
                             <div class="mb-1">
                                 <div class="d-flex">
                                     <div class="flex-shrink-0">
-                                        <img alt="Image placeholder" class="avatar rounded-circle" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                        <img alt="Image placeholder" class="avatar rounded-circle" src="{{ asset('build/images/user/default_avatar.png') }}">
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <h6 class="h5 mt-0">Michael Lewis</h6>
@@ -285,7 +285,7 @@
                                 </div>
                                 <div class="d-flex mt-3">
                                     <div class="flex-shrink-0">
-                                        <img alt="Image placeholder" class="avatar rounded-circle" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                        <img alt="Image placeholder" class="avatar rounded-circle" src="{{ asset('build/images/user/default_avatar.png') }}">
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <h6 class="h5 mt-0">Jessica Stones</h6>
@@ -304,7 +304,7 @@
                                 </div>
                                 <div class="d-flex mt-4">
                                     <div class="flex-shrink-0">
-                                        <img alt="Image placeholder" class="avatar rounded-circle me-3" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                        <img alt="Image placeholder" class="avatar rounded-circle me-3" src="{{ asset('build/images/user/default_avatar.png') }}">
                                     </div>
                                     <div class="flex-grow-1 my-auto">
                                         <div class="input-group input-group-static">
@@ -374,16 +374,16 @@
                                     <p class="mb-0">Líbí se (4):</p>
                                     <div class="avatar-group ms-auto">
                                         <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexa Tompson">
-                                            <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                            <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                         </a>
                                         <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                                            <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                            <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                         </a>
                                         <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
-                                            <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                            <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                         </a>
                                         <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Martin Doe">
-                                            <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                            <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                         </a>
                                     </div>
                                 </li>
@@ -441,16 +441,16 @@
                                     <p class="mb-0">Líbí se (4):</p>
                                     <div class="avatar-group ms-auto">
                                         <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Martin Doe">
-                                            <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                            <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                         </a>
                                         <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                                            <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                            <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                         </a>
                                         <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexa Tompson">
-                                            <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                            <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                         </a>
                                         <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexandra Smith">
-                                            <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                            <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                         </a>
                                     </div>
                                 </li>
@@ -468,7 +468,7 @@
                         <div class="card-body p-3">
                             <div class="d-flex">
                                 <div class="avatar avatar-lg">
-                                    <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                    <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                 </div>
                                 <div class="ms-2 my-auto">
                                     <h6 class="mb-0">Klára Králová</h6>
@@ -484,16 +484,16 @@
                                 </button>
                                 <div class="avatar-group ms-auto">
                                     <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexa Tompson">
-                                        <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                        <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                     </a>
                                     <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                                        <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                        <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                     </a>
                                     <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
-                                        <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                        <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                     </a>
                                     <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Martin Doe">
-                                        <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                        <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                     </a>
                                 </div>
                             </div>
@@ -503,7 +503,7 @@
                         <div class="card-body p-3">
                             <div class="d-flex">
                                 <div class="avatar avatar-lg">
-                                    <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                    <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                 </div>
                                 <div class="ms-2 my-auto">
                                     <h6 class="mb-0">Jakub Voženílek</h6>
@@ -519,21 +519,22 @@
                                 </button>
                                 <div class="avatar-group ms-auto">
                                     <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexa Tompson">
-                                        <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                        <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                     </a>
                                     <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                                        <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                        <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                     </a>
                                     <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
-                                        <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                        <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                     </a>
                                     <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Martin Doe">
-                                        <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                        <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {% dump(anniversary.anniversaries(5, 14)) %}
                     <div class="card mt-4 card-plain">
                         <div class="card-body p-3">
                             <div class="d-flex">
@@ -545,7 +546,7 @@
                         <div class="card-body p-3">
                             <div class="d-flex">
                                 <div class="avatar avatar-lg">
-                                    <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                    <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                 </div>
                                 <div class="ms-2 my-auto">
                                     <h6 class="mb-0">Klára Králová</h6>
@@ -560,7 +561,7 @@
                         <div class="card-body p-3">
                             <div class="d-flex">
                                 <div class="avatar avatar-lg">
-                                    <img alt="Image placeholder" src="{{ asset('build/images/avatars/default_avatar.png') }}">
+                                    <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
                                 </div>
                                 <div class="ms-2 my-auto">
                                     <h6 class="mb-0">Jakub Voženílek</h6>

@@ -1,4 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
+import flatpickr from "flatpickr";
 
 /*
  * This is an example Stimulus controller!
@@ -15,6 +16,7 @@ export default class extends Controller
         this.prepareMenu(); // Collapse current menu when its located inside parent menu
         this.prepareSelect2(); // Set all inputs with class select2 to nice select
         this.prepareChoices();
+        this.prepareDate();
 
         (function() {
             let isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
@@ -766,13 +768,13 @@ export default class extends Controller
             let navbarBrand = document.querySelector('.navbar-brand-img');
             let navbarBrandImg = navbarBrand.src;
 
-            if (navbarBrandImg.includes('logo-ct.png')) {
+            if (navbarBrandImg.includes('logo-ct.svg')) {
                 navbarBrand.src = navbarBrandImg.replace("logo-ct", "logo-ct-dark");;
             }
         } else {
             let navbarBrand = document.querySelector('.navbar-brand-img');
             let navbarBrandImg = navbarBrand.src;
-            if (navbarBrandImg.includes('logo-ct-dark.png')) {
+            if (navbarBrandImg.includes('logo-ct-dark.svg')) {
                 navbarBrand.src = navbarBrandImg.replace("logo-ct-dark", "logo-ct");
             }
         }
@@ -781,7 +783,7 @@ export default class extends Controller
             let navbarBrand = document.querySelector('.navbar-brand-img');
             let navbarBrandImg = navbarBrand.src;
 
-            if (navbarBrandImg.includes('logo-ct.png')) {
+            if (navbarBrandImg.includes('logo-ct.svg')) {
                 navbarBrand.src = navbarBrandImg.replace("logo-ct", "logo-ct-dark");
             }
         }
@@ -858,6 +860,7 @@ export default class extends Controller
             });
         });
 
+        /* If you want to ues separated dates, then year-choices is ready and from material-dashboard->settings.html copy for days and months */
         let yearChoices = document.querySelectorAll('.year-choices');
         yearChoices.forEach(function(year) {
             setTimeout(function() {
@@ -872,67 +875,19 @@ export default class extends Controller
                 optn.text = y;
                 optn.value = y;
 
-                if (y === 2020) {
+                if (y === currentYear) {
                     optn.selected = true;
                 }
 
                 year.options.add(optn);
             }
         });
+    }
 
-        let dayChoices = document.querySelectorAll('.day-choices');
-        if (document.getElementById('choices-day')) {
-            var day = document.getElementById('choices-day');
-            setTimeout(function() {
-                const example = new Choices(day);
-            }, 1);
-
-
-            for (y = 1; y <= 31; y++) {
-                var optn = document.createElement("OPTION");
-                optn.text = y;
-                optn.value = y;
-
-                if (y == 1) {
-                    optn.selected = true;
-                }
-
-                day.options.add(optn);
-            }
-
-        }
-
-        if (document.getElementById('choices-month')) {
-            var month = document.getElementById('choices-month');
-            setTimeout(function() {
-                const example = new Choices(month);
-            }, 1);
-
-            var d = new Date();
-            var monthArray = new Array();
-            monthArray[0] = "January";
-            monthArray[1] = "February";
-            monthArray[2] = "March";
-            monthArray[3] = "April";
-            monthArray[4] = "May";
-            monthArray[5] = "June";
-            monthArray[6] = "July";
-            monthArray[7] = "August";
-            monthArray[8] = "September";
-            monthArray[9] = "October";
-            monthArray[10] = "November";
-            monthArray[11] = "December";
-            for (m = 0; m <= 11; m++) {
-                var optn = document.createElement("OPTION");
-                optn.text = monthArray[m];
-                // server side month start from one
-                optn.value = (m + 1);
-                // if june selected
-                if (m == 1) {
-                    optn.selected = true;
-                }
-                month.options.add(optn);
-            }
-        }
+    prepareDate() {
+        let dates = document.querySelectorAll('.date-input');
+        dates.forEach(function(date) {
+            date.flatpickr();
+        });
     }
 }

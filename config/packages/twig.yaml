@@ -3,6 +3,9 @@ twig:
     form_themes:
         - '@TetranzSelect2Entity/Form/fields.html.twig'
 
+    globals:
+        anniversary: '@app.anniversaries'
+
 when@test:
     twig:
         strict_variables: true
