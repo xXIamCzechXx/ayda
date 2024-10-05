@@ -6,6 +6,9 @@
     {% if item.extra('image', false) %}
         <img src="{{ asset(item.extra('image')) }}" class="avatar">
         <span class="nav-link-text ms-2 ps-1">{{ item.label }}</span>
+    {% elseif item.level == 1 and '</i>' in item.label %}
+        {{ item.label|raw }}
+        <span class="nav-link-text ms-2 ps-1">{{ item.name }}</span>
     {% elseif item.level == 1 %}
         <i class="material-icons-round opacity-10">{{ item.label }}</i>
         <span class="nav-link-text ms-2 ps-1">{{ item.name }}</span>

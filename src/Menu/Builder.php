@@ -26,7 +26,7 @@ final class Builder
         $menu = $this->factory->createItem('navbar')->setChildrenAttribute('class', 'navbar-nav');
 
         // Instead of name in label it will be rendered from $app->getUser()->getName()
-        $menu->addChild('Account', ['route' => 'app_account'])
+        $menu->addChild('Account', ['route' => 'app_account', 'routeParameters' => ['id' => $user->getId()]])
             ->setAttribute('class', 'nav-item mb-2 mt-0')
             ->setAttribute('role', 'button')
             ->setLinkAttribute('class', 'nav-link text-white custom-collapse')
@@ -37,7 +37,19 @@ final class Builder
             ->setExtra('break', true)
             ->setLabel($user->getName());
 
-        $menu->addChild('Nástěnka', ['route' => ''])
+        $menu->addChild('Nástěnka', ['route' => 'app_dashboard'])
+            ->setAttribute('class', 'nav-item')
+            ->setAttribute('role', 'button')
+            ->setLinkAttribute('class', 'nav-link text-white custom-collapse')
+            ->setLabel('<i class="fa-regular fa-chart-bar"></i>');
+
+        $menu->addChild('Uživatelé', ['route' => 'app_users'])
+            ->setAttribute('class', 'nav-item')
+            ->setAttribute('role', 'button')
+            ->setLinkAttribute('class', 'nav-link text-white custom-collapse')
+            ->setLabel('<i class="fa-regular fa-user"></i>');
+
+        $menu->addChild('Ostatní', ['route' => ''])
              ->setAttribute('class', 'nav-item mb-2 mt-0')
              ->setAttribute('role', 'button')
              ->setLinkAttribute('data-action', 'click->hello#toggle')
@@ -45,24 +57,18 @@ final class Builder
              ->setExtra('break', true)
              ->setLabel('dashboard');
 
-        $menu['Nástěnka']->addChild('Nástěnka', ['route' => 'app_dashboard'])
-             ->setAttribute('class', 'nav-item')
-             ->setAttribute('role', 'button')
-             ->setLinkAttribute('class', 'nav-link text-white custom-collapse')
-             ->setLabel('N');
-
-        $menu['Nástěnka']->addChild('Aktivity', ['route' => 'app_kanban'])
+        $menu['Ostatní']->addChild('Aktivity', ['route' => 'app_kanban'])
             ->setAttribute('class', 'nav-item')
             ->setLinkAttribute('class', 'nav-link text-white')
             ->setLabel('A');
 
-        $menu['Nástěnka']->addChild('Přehled', ['route' => 'app_overview'])
+        $menu['Ostatní']->addChild('Přehled', ['route' => 'app_overview'])
              ->setAttribute('class', 'nav-item')
              ->setAttribute('role', 'button')
              ->setLinkAttribute('class', 'nav-link text-white custom-collapse')
              ->setLabel('P');
 
-        $menu['Nástěnka']->addChild('Statistiky', ['route' => 'app_statistics'])
+        $menu['Ostatní']->addChild('Statistiky', ['route' => 'app_statistics'])
             ->setAttribute('class', 'nav-item')
             ->setLinkAttribute('class', 'nav-link text-white')
             ->setLabel('S');

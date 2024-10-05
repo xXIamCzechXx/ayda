@@ -2,14 +2,13 @@
 
 namespace App\Controller;
 
+use App\Controller\Parent\DefaultController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
- * DefaultController.php
- *
  * Author: Bc. Dominik Mach
  *
  * Copyright: (c) 2024 Bc. Dominik Mach. All rights reserved.
@@ -19,7 +18,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
  * of the above copyright notice. This software or any other copies thereof
  * may not be provided or otherwise made available to any other person.
  */
-class SecurityController extends AbstractController
+class SecurityController extends DefaultController
 {
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response

@@ -26,6 +26,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item pt-2">
+                                    <a class="nav-link text-dark d-flex" data-scroll="" href="#accounts">
+                                        <i class="material-icons text-lg me-2">badge</i>
+                                        <span class="text-sm">Address</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item pt-2">
                                     <a class="nav-link text-dark d-flex" data-scroll="" href="#password">
                                         <i class="material-icons text-lg me-2">lock</i>
                                         <span class="text-sm">Change Password</span>
@@ -41,12 +47,6 @@
                                     <a class="nav-link text-dark d-flex" data-scroll="" href="#2fa">
                                         <i class="material-icons text-lg me-2">security</i>
                                         <span class="text-sm"><del>2FA</del></span>
-                                    </a>
-                                </li>
-                                <li class="nav-item pt-2">
-                                    <a class="nav-link text-dark d-flex" data-scroll="" href="#accounts">
-                                        <i class="material-icons text-lg me-2">badge</i>
-                                        <span class="text-sm"><del>Accounts</del></span>
                                     </a>
                                 </li>
                                 <li class="nav-item pt-2">
@@ -70,11 +70,11 @@
                             <div class="row justify-content-center align-items-center">
                                 <div class="col-sm-auto col-4" style="width: 120px;">
                                     <div class="avatar avatar-xl position-relative m-0 p-0">
-                                        <div class="input-group input-group-dynamic mt-4 p-0" style="margin-left: 20px; width: 200px;">
+                                        <div class="input-group input-group-dynamic mt-0 p-0" style="margin: 0 0 10px 20px; width: 200px;">
                                             {% include 'form/component/dropzone/form.html.twig' with {
-                                                'url': path('app_file_upload', {'folder': 'user', 'userId': app.user.id}),
+                                                'url': path('app_file_upload', {'folder': 'user', 'userId': user.id}),
                                                 'maxFiles': 1,
-                                                'image': app.user.avatarPath,
+                                                'image': user.avatarPath,
                                                 'class': 'my-account-image'
                                             } %}
                                         </div>
@@ -83,10 +83,10 @@
                                 <div class="col-sm-auto col-8 my-auto">
                                     <div class="h-100">
                                         <h5 class="mb-1 font-weight-bolder">
-                                            {{ app.user.name }}
+                                            {{ user.name }}
                                         </h5>
                                         <p class="mb-0 font-weight-normal text-sm">
-                                            CEO / Co-Founder
+                                            {{ user.team.name }}
                                         </p>
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{ form_start(form) }}
+                        {{ form_start(userForm) }}
                             <!-- Card Basic Info -->
                             <div class="card mt-4" id="basic-info">
                                 <div class="card-header">
@@ -112,110 +112,112 @@
                                     <div class="row">
                                         <div class="col-5">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.firstName) }}
-                                                {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
-                                                {{ form_errors(form.firstName) }}
+                                                {{ form_label(userForm.firstName) }}
+                                                {{ form_widget(userForm.firstName, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(userForm.firstName) }}
                                             </div>
                                         </div>
                                         <div class="col-5">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.lastName) }}
-                                                {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
-                                                {{ form_errors(form.lastName) }}
+                                                {{ form_label(userForm.lastName) }}
+                                                {{ form_widget(userForm.lastName, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(userForm.lastName) }}
                                             </div>
                                         </div>
                                         <div class="col-2">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.degree) }}
-                                                {{ form_widget(form.degree, {'attr': {'class': 'form-control'}}) }}
-                                                {{ form_errors(form.degree) }}
+                                                {{ form_label(userForm.degree) }}
+                                                {{ form_widget(userForm.degree, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(userForm.degree) }}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-4">
-                                        <div class="col-4">
+                                        <div class="col-md-4">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.email) }}
-                                                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
-                                                {{ form_errors(form.email) }}
+                                                {{ form_label(userForm.email) }}
+                                                {{ form_widget(userForm.email, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(userForm.email) }}
                                             </div>
                                         </div>
                                         <div class="col-md-3 align-self-center">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.currency) }}
-                                                {{ form_widget(form.currency, {'attr': {'class': 'form-control single-choices'}}) }}
-                                                {{ form_errors(form.currency) }}
+                                                {{ form_label(userForm.currency) }}
+                                                {{ form_widget(userForm.currency, {'attr': {'class': 'form-control single-choices'}}) }}
+                                                {{ form_errors(userForm.currency) }}
                                             </div>
                                         </div>
                                         <div class="col-md-3 align-self-center">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.lang) }}
-                                                {{ form_widget(form.lang, {'attr': {'class': 'form-control single-choices'}}) }}
-                                                {{ form_errors(form.lang) }}
+                                                {{ form_label(userForm.lang) }}
+                                                {{ form_widget(userForm.lang, {'attr': {'class': 'form-control single-choices'}}) }}
+                                                {{ form_errors(userForm.lang) }}
                                             </div>
                                         </div>
-                                        <div class="col-md-2 align-self-center">
+                                        <div class="col-md-2 align-self-center pb-2">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.birthDate) }}
-                                                {{ form_widget(form.birthDate, {'attr': {'class': 'form-control date-input'}}) }} {# Also "select2" class works #}
-                                                {{ form_errors(form.birthDate) }}
+                                                {{ form_label(userForm.birthDate) }}
+                                                {{ form_widget(userForm.birthDate, {'attr': {'class': 'form-control date-input'}}) }} {# Also "select2" class works #}
+                                                {{ form_errors(userForm.birthDate) }}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-4">
                                         <div class="col-md-2 align-self-center">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.monthlyHours) }}
-                                                {{ form_widget(form.monthlyHours, {'attr': {'class': 'form-control'}}) }}
-                                                {{ form_errors(form.monthlyHours) }}
+                                                {{ form_label(userForm.monthlyHours) }}
+                                                {{ form_widget(userForm.monthlyHours, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(userForm.monthlyHours) }}
                                             </div>
                                         </div>
                                         <div class="col-md-2 align-self-center">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.hourlyWage) }}
-                                                {{ form_widget(form.hourlyWage, {'attr': {'class': 'form-control'}}) }}
-                                                {{ form_errors(form.hourlyWage) }}
+                                                {{ form_label(userForm.hourlyWage) }}
+                                                {{ form_widget(userForm.hourlyWage, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(userForm.hourlyWage) }}
                                             </div>
                                         </div>
                                         <div class="col-md-2 align-self-center">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.holidayHours) }}
-                                                {{ form_widget(form.holidayHours, {'attr': {'class': 'form-control'}}) }}
-                                                {{ form_errors(form.holidayHours) }}
+                                                {{ form_label(userForm.holidayHours) }}
+                                                {{ form_widget(userForm.holidayHours, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(userForm.holidayHours) }}
                                             </div>
                                         </div>
                                         <div class="col-md-6 align-self-center">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.roles) }}
-                                                {{ form_widget(form.roles, {'attr': {'class': 'form-control multiple-choices'}}) }} {# Also "select2" class works #}
-                                                {{ form_errors(form.roles) }}
+                                                {{ form_label(userForm.roles) }}
+                                                {{ form_widget(userForm.roles, {'attr': {'class': 'form-control multiple-choices'}}) }} {# Also "select2" class works #}
+                                                {{ form_errors(userForm.roles) }}
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mt-4">
-                                        <div class="col-md-6">
-                                            {{ form_label(form.appSidebarType) }}
-                                            {{ form_widget(form.appSidebarType, {'attr': {'class': 'form-control single-choices'}}) }}
-                                            {{ form_errors(form.appSidebarType) }}
+                                    {#
+                                        <div class="row mt-4">
+                                            <div class="col-md-6">
+                                                {{ form_label(userForm.appSidebarType) }}
+                                                {{ form_widget(userForm.appSidebarType, {'attr': {'class': 'form-control single-choices'}}) }}
+                                                {{ form_errors(userForm.appSidebarType) }}
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ form_label(userForm.appDesign) }}
+                                                {{ form_widget(userForm.appDesign, {'attr': {'class': 'form-control single-choices'}}) }}
+                                                {{ form_errors(userForm.appDesign) }}
+                                            </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            {{ form_label(form.appDesign) }}
-                                            {{ form_widget(form.appDesign, {'attr': {'class': 'form-control single-choices'}}) }}
-                                            {{ form_errors(form.appDesign) }}
+                                        <div class="row mt-4">
+                                            <div class="col-md-12 form-check form-switch m-2">
+                                                {{ form_label(userForm.appSidebarSpread) }}
+                                                {{ form_widget(userForm.appSidebarSpread, {'attr': {'class': 'form-check-input'}}) }}
+                                                {{ form_errors(userForm.appSidebarSpread) }}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row mt-4">
-                                        <div class="col-md-12 form-check form-switch m-2">
-                                            {{ form_label(form.appSidebarSpread) }}
-                                            {{ form_widget(form.appSidebarSpread, {'attr': {'class': 'form-check-input'}}) }}
-                                            {{ form_errors(form.appSidebarSpread) }}
-                                        </div>
-                                    </div>
+                                    #}
                                     <div class="row mt-4">
                                         <div class="col-md-12 align-self-center">
-                                            {{ form_label(form.description) }}
-                                            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
-                                            {{ form_errors(form.description) }}
+                                            {{ form_label(userForm.description) }}
+                                            {{ form_widget(userForm.description, {'attr': {'class': 'form-control'}}) }}
+                                            {{ form_errors(userForm.description) }}
                                         </div>
                                     </div>
                                     <button type="submit" class="btn bg-gradient-light btn-sm float-end mt-3 mb-0">Update</button>
@@ -227,55 +229,55 @@
                                 </div>
                                 <div class="card-body pt-0">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-md-5">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.address.streetName) }}
-                                                {{ form_widget(form.address.streetName, {'attr': {'class': 'form-control'}}) }}
-                                                {{ form_errors(form.address.streetName) }}
+                                                {{ form_label(userForm.address.streetName) }}
+                                                {{ form_widget(userForm.address.streetName, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(userForm.address.streetName) }}
                                             </div>
                                         </div>
-                                        <div class="col-2">
+                                        <div class="col-md-3">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.address.streetNumber) }}
-                                                {{ form_widget(form.address.streetNumber, {'attr': {'class': 'form-control'}}) }}
-                                                {{ form_errors(form.address.streetNumber) }}
+                                                {{ form_label(userForm.address.streetNumber) }}
+                                                {{ form_widget(userForm.address.streetNumber, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(userForm.address.streetNumber) }}
                                             </div>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-md-4">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.address.city) }}
-                                                {{ form_widget(form.address.city, {'attr': {'class': 'form-control'}}) }}
-                                                {{ form_errors(form.address.city) }}
+                                                {{ form_label(userForm.address.city) }}
+                                                {{ form_widget(userForm.address.city, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(userForm.address.city) }}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-4">
-                                        <div class="col-4">
+                                        <div class="col-md-4">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.address.phone) }}
-                                                {{ form_widget(form.address.phone, {'attr': {'class': 'form-control'}}) }}
-                                                {{ form_errors(form.address.phone) }}
+                                                {{ form_label(userForm.address.phone) }}
+                                                {{ form_widget(userForm.address.phone, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(userForm.address.phone) }}
                                             </div>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-md-4">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.address.zip) }}
-                                                {{ form_widget(form.address.zip, {'attr': {'class': 'form-control'}}) }}
-                                                {{ form_errors(form.address.zip) }}
+                                                {{ form_label(userForm.address.zip) }}
+                                                {{ form_widget(userForm.address.zip, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_errors(userForm.address.zip) }}
                                             </div>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-md-4">
                                             <div class="input-group input-group-static">
-                                                {{ form_label(form.address.country) }}
-                                                {{ form_widget(form.address.country, {'attr': {'class': 'form-control single-choice'}}) }}
-                                                {{ form_errors(form.address.country) }}
+                                                {{ form_label(userForm.address.country) }}
+                                                {{ form_widget(userForm.address.country, {'attr': {'class': 'form-control single-choices'}}) }}
+                                                {{ form_errors(userForm.address.country) }}
                                             </div>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn bg-gradient-light btn-sm float-end mt-3 mb-0">Update</button>
                                 </div>
                             </div>
-                        {{ form_end(form) }}
+                        {{ form_end(userForm) }}
 
                         <div class="row mt-4" id="accounts">
                             <div class="col-xl-6 col-md-6 mb-xl-0 mb-4">

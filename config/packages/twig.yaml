@@ -5,6 +5,7 @@ twig:
 
     globals:
         anniversary: '@app.anniversaries'
+        recruitment: '@app.new_recruits'
 
 when@test:
     twig:

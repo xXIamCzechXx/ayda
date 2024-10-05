@@ -1046,7 +1046,7 @@ const password2 = document.getElementById('confirm_password');
 //Show input error messages
 function showError(input, message) {
   const formControl = input.parentElement;
-  formControl.className = 'input-group input-group-outline my-5 is-invalid is-filled';
+  formControl.className = 'input-group input-group-outline is-invalid is-filled';
   const small = formControl.querySelector('small');
   small.innerText = message;
 }
@@ -1054,7 +1054,7 @@ function showError(input, message) {
 //show success colour
 function showSucces(input) {
   const formControl = input.parentElement;
-  formControl.className = 'input-group input-group-outline my-5 is-valid is-filled';
+  formControl.className = 'input-group input-group-outline is-valid is-filled';
 }
 
 //check email is valid

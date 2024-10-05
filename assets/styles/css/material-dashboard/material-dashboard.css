@@ -20281,11 +20281,13 @@ fieldset:disabled .btn {
   border-radius: 50rem;
   height: 48px;
   width: 48px;
+  /* overflow: hidden; */
   transition: all .2s ease-in-out;
 }
 
 .avatar img {
   width: 100%;
+  border-radius: 50rem;
 }
 
 .avatar+.avatar-content {
@@ -20327,6 +20329,11 @@ fieldset:disabled .btn {
   width: 58px !important;
   height: 58px !important;
   font-size: 0.875rem;
+  overflow: hidden;
+}
+
+.avatar-lg img {
+  min-height: 100%;
 }
 
 .avatar-lg.avatar-raised {

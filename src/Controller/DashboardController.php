@@ -2,18 +2,16 @@
 
 namespace App\Controller;
 
+use App\Controller\Parent\DefaultController;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 /**
- * DefaultController.php
- *
  * Author: Bc. Dominik Mach
  *
  * Copyright: (c) 2024 Bc. Dominik Mach. All rights reserved.
@@ -24,7 +22,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
  * may not be provided or otherwise made available to any other person.
  */
 #[IsGranted("ROLE_USER")]
-class DefaultController extends AbstractController
+class DashboardController extends DefaultController
 {
     #[Route('/', name: 'app_dashboard')]
     public function index(EntityManagerInterface $em, CacheInterface $cache, HttpClientInterface $httpClient): Response

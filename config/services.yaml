@@ -33,3 +33,6 @@ services:
 
     app.anniversaries:
         class: App\Service\AnniversaryProvider
+
+    app.new_recruits:
+        class: App\Service\NewRecruitsProvider

@@ -3,8 +3,10 @@
 namespace App\DataFixtures;
 
 use App\Entity\Currency;
+use App\Entity\Team;
 use App\Factory\CountryFactory;
 use App\Factory\CurrencyFactory;
+use App\Factory\TeamFactory;
 use App\Factory\UserFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -40,10 +42,15 @@ class AppFixtures extends Fixture
             'avatar' => 'mach.png',
             'roles' => ['ROLE_ADMIN'],
             'currency' => $czkCurrency,
+            'team' => TeamFactory::createOne(['name' => TeamFactory::ADMIN]),
         ]);
-        UserFactory::createMany(20, [
-            'currency' => $czkCurrency,
-        ]);
+
+        foreach (TeamFactory::TEAMS as $team) {
+            UserFactory::createMany(rand(1, 3), [
+                'currency' => $czkCurrency,
+                'team' => TeamFactory::createOne(['name' => $team]),
+            ]);
+        }
 
         CountryFactory::createOne([
             'currency' => $czkCurrency,

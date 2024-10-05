@@ -16,6 +16,7 @@ import './styles/scss/app.scss';
 import jquery from 'jquery';
 const $ = jquery;
 window.$ = window.jQuery = $;
+import 'bootstrap';
 
 document.addEventListener('turbo:before-cache', (event) => {
     // You can repair broken bootstrap here

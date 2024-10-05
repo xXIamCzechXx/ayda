@@ -1,4 +1,4 @@
-<div class="fixed-plugin">
+<div class="fixed-plugin" data-controller="configuration">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
         <i class="material-icons py-2">settings</i>
     </a>
@@ -23,9 +23,9 @@
                 <p class="text-sm">Vyberte si ze tří druhů postranního menu</p>
             </div>
             <div id="sidebarType" class="d-flex">
-                <button class="btn bg-gradient-dark px-3 mb-2 {{ app.user.isAppSidebarTypeActive('dark') ? 'active' : '' }}" data-class="bg-gradient-dark" data-action="click->hello#sidebarType">Tmavý</button>
-                <button class="btn bg-gradient-dark px-3 mb-2 ms-2 {{ app.user.isAppSidebarTypeActive('auto') ? 'active' : '' }}" data-class="bg-transparent" data-action="click->hello#sidebarType">Průhledný</button>
-                <button class="btn bg-gradient-dark px-3 mb-2 ms-2 {{ app.user.isAppSidebarTypeActive('light') ? 'active' : '' }}" data-class="bg-white" data-action="click->hello#sidebarType">Světlý</button>
+                <button class="btn bg-gradient-dark px-3 mb-2 {{ app.user.isAppSidebarTypeActive('dark') ? 'active' : '' }}" data-type="dark" data-class="bg-gradient-dark" data-action="click->configuration#sidebarType">Tmavý</button>
+                <button class="btn bg-gradient-dark px-3 mb-2 ms-2 {{ app.user.isAppSidebarTypeActive('auto') ? 'active' : '' }}" data-type="auto" data-class="bg-transparent" data-action="click->configuration#sidebarType">Průhledný</button>
+                <button class="btn bg-gradient-dark px-3 mb-2 ms-2 {{ app.user.isAppSidebarTypeActive('light') ? 'active' : '' }}" data-type="light" data-class="bg-white" data-action="click->configuration#sidebarType">Světlý</button>
             </div>
             <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
             <!-- Navbar Fixed -->
@@ -37,21 +37,21 @@
 {#            </div>#}
             <hr class="horizontal dark my-3">
             <div class="mt-2 d-flex">
-                <h6 class="mb-0">Široké menu</h6>
+                <h6 class="mb-0">Úzké menu</h6>
                 <div class="form-check form-switch ps-0 ms-auto my-auto">
-                    <input class="form-check-input mt-1 ms-auto" checked="{{ app.user.appSidebarSpread ? '' : 'checked' }}" type="checkbox" id="navbarMinimize" data-action="click->hello#navbarMinimize">
+                    <input class="form-check-input mt-1 ms-auto" {{ app.user.appSidebarSpread ? 'checked="checked"' : '' }} type="checkbox" id="navbarMinimize" data-action="click->configuration#navbarMinimize">
                 </div>
             </div>
             <hr class="horizontal dark my-3">
             <div class="mt-2 d-flex">
-                <h6 class="mb-0">Světlý / Tmavý mód</h6>
-                <div id="dark-mode-checkbox" class="form-check form-switch ps-0 ms-auto my-auto" data-controller="darkmode" {{ app.user and app.user.appDesign.value == 'dark' ? 'data-darkmode="true" checked="true"' : 'data-darkmode="false"' }}>
-                    <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" data-action="click->darkmode#darkMode">
+                <h6 class="mb-0">Tmavý režim</h6>
+                <div id="dark-mode-checkbox" class="form-check form-switch ps-0 ms-auto my-auto" {{ (app.user and app.user.appDesign.value == 'dark') ? 'data-darkmode="true"' : 'data-darkmode="false"' }}>
+                    <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" data-action="click->configuration#darkMode" {{ (app.user and app.user.appDesign.value == 'dark') ? 'checked="true"' : '' }}>
                 </div>
             </div>
             <hr class="horizontal dark my-sm-4">
-            <a class="btn bg-gradient-info w-100" href="javascript:">Nastavení</a>
-            <a class="btn btn-outline-dark w-100" href="javascript:">Dokumentace</a>
+            <a class="btn bg-gradient-info w-100" href="{{ path('app_account', { id: app.user.id }) }}">Nastavení</a>
+            <a class="btn btn-outline-dark w-100" href="{{ path('app_dashboard') }}">Dokumentace</a>
             <div class="w-100 text-center">
                 <h6 class="mt-3">Rychlý výběr</h6>
                 <a href="{{ path('app_logout') }}" class="btn btn-dark mb-0 me-2">

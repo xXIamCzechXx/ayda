@@ -1,0 +1,27 @@
+{# Widget providing anniversaries of users #}
+<div class="card mt-2 card-plain">
+    <div class="card-body p-0 me-3 ms-3 mt-2">
+        <div class="d-flex">
+            <h3>Výročí nástupů &#x1F389;</h3>
+        </div>
+    </div>
+</div>
+{% for user in anniversary.upcomingAnniversaries %}
+    {% set years = (date()|date('Y') - user.workSince|date('Y')) %}
+    <div class="card mt-0 card-plain">
+        <div class="card-body p-3">
+            <div class="d-flex">
+                <div class="avatar avatar-lg">
+                    <a href="{{ path('app_account', { id: user.id }) }}"><img alt="Image placeholder" src="{{ user.avatarPath }}"></a>
+                </div>
+                <div class="ms-2 my-auto">
+                    <h6 class="mb-0"><a href="{{ path('app_account', { id: user.id }) }}">{{ user.name }}</a></h6>
+                    <p class="text-xs mb-0">Nástup: {{ user.workSince|date('d. m. Y') }}</p>
+                </div>
+            </div>
+            <p class="mb-0 mt-3">Oslavuje s námi v <b>Ayda s.r.o.</b> již <a class="text-primary">{{ years }}. rok &#127881;&#127882;</a></p>
+            <p class="mb-0"></p>
+        </div>
+        <hr class="dark horizontal my-0">
+    </div>
+{% endfor %}

@@ -26,7 +26,7 @@
             </ol>
             <h6 class="font-weight-bolder mb-0">Kanban</h6>
         </nav>
-        <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
+        <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none">
             <a href="javascript:" class="nav-link text-body p-0">
                 <div class="sidenav-toggler-inner">
                     <i class="sidenav-toggler-line"></i>
@@ -42,15 +42,15 @@
                     <input id="search" type="text" class="form-control">
                 </div>
             </div>
-            <ul class="navbar-nav  justify-content-end">
+            <ul class="navbar-nav justify-content-end ps-3">
                 <li class="nav-item">
-                    <a class="nav-link text-body p-0 position-relative">
+                    <a href="{{ path('app_account', { id: app.user.id }) }}" class="nav-link text-body p-0 position-relative">
                         <i class="material-icons me-sm-1">
                             account_circle
                         </i>
                     </a>
                 </li>
-                <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                <li class="nav-item d-xl-none ps-3 d-flex align-items-center mb-1">
                     <a class="nav-link text-body p-0" id="iconNavbarSidenav">
                         <div class="sidenav-toggler-inner">
                             <i class="sidenav-toggler-line"></i>

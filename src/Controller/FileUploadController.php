@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Controller\Parent\DefaultController;
 use App\Entity\User;
 use App\Service\UploadHelper;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,12 +13,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
 /**
- * Class FileUploadController
- * This class handles file uploads in the Symfony application.
+ * Author: Bc. Dominik Mach
  *
- * @package AppBundle\Controller
+ * Copyright: (c) 2024 Bc. Dominik Mach. All rights reserved.
+ *
+ * This software is furnished under a license and may be used and copied
+ * only in accordance with the terms of such license and with the inclusion
+ * of the above copyright notice. This software or any other copies thereof
+ * may not be provided or otherwise made available to any other person.
  */
-class FileUploadController extends AbstractController
+class FileUploadController extends DefaultController
 {
     #[Route('/file-upload/{folder}/{userId}', name: 'app_file_upload')]
     public function uploadFile(Request $request, UploadHelper $uploadHelper, EntityManagerInterface $em, $folder, $userId): JsonResponse

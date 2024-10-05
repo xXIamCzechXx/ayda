@@ -13,7 +13,7 @@ import flatpickr from "flatpickr";
 export default class extends Controller
 {
     connect() {
-        this.prepareMenu(); // Collapse current menu when its located inside parent menu
+        this.prepareMenu(); // Collapse current menu when it's located inside parent menu
         this.prepareSelect2(); // Set all inputs with class select2 to nice select
         this.prepareChoices();
         this.prepareDate();
@@ -449,99 +449,6 @@ export default class extends Controller
         }
         // End tabs navigation
 
-        // click to minimize the sidebar or reverse to normal
-        if (document.querySelector('.sidenav-toggler')) {
-            let sidenavToggler = document.getElementsByClassName('sidenav-toggler')[0];
-            let sidenavShow = document.getElementsByClassName('g-sidenav-show')[0];
-            let toggleNavbarMinimize = document.getElementById('navbarMinimize');
-
-            if (sidenavShow) {
-                sidenavToggler.onclick = function() {
-                    if (!sidenavShow.classList.contains('g-sidenav-hidden')) {
-                        sidenavShow.classList.remove('g-sidenav-pinned');
-                        sidenavShow.classList.add('g-sidenav-hidden');
-                        if (toggleNavbarMinimize) {
-                            toggleNavbarMinimize.click();
-                            toggleNavbarMinimize.setAttribute("checked", "true");
-                        }
-                    } else {
-                        sidenavShow.classList.remove('g-sidenav-hidden');
-                        sidenavShow.classList.add('g-sidenav-pinned');
-                        if (toggleNavbarMinimize) {
-                            toggleNavbarMinimize.click();
-                            toggleNavbarMinimize.removeAttribute("checked");
-                        }
-                    }
-                }
-            }
-        }
-
-        // Toggle Sidenav
-        const iconNavbarSidenav = document.getElementById('iconNavbarSidenav');
-        const iconSidenav = document.getElementById('iconSidenav');
-        const sidenav = document.getElementById('sidenav-main');
-        let body = document.getElementsByTagName('body')[0];
-        let className = 'g-sidenav-pinned';
-
-        if (iconNavbarSidenav) {
-            iconNavbarSidenav.addEventListener("click", toggleSidenav);
-        }
-
-        if (iconSidenav) {
-            iconSidenav.addEventListener("click", toggleSidenav);
-        }
-
-        function toggleSidenav() {
-            if (body.classList.contains(className)) {
-                body.classList.remove(className);
-                setTimeout(function() {
-                    sidenav.classList.remove('bg-white');
-                }, 100);
-                sidenav.classList.remove('bg-transparent');
-
-            } else {
-                body.classList.add(className);
-                sidenav.classList.remove('bg-transparent');
-                iconSidenav.classList.remove('d-none');
-            }
-        }
-
-        // Resize navbar color depends on configurator active type of sidenav
-        let referenceButtons = document.querySelector('[data-class]');
-        window.addEventListener("resize", navbarColorOnResize);
-        function navbarColorOnResize() {
-            if (sidenav) {
-                if (window.innerWidth > 1200) {
-                    if (referenceButtons.classList.contains('active') && referenceButtons.getAttribute('data-class') === 'bg-transparent') {
-                        sidenav.classList.remove('bg-white');
-                    } else {
-                        if (!document.querySelector('body').classList.contains('dark-version')) {
-                            sidenav.classList.add('bg-white');
-                        }
-                    }
-                } else {
-                    sidenav.classList.remove('bg-transparent');
-                }
-            }
-        }
-
-        // Deactivate sidenav type buttons on resize and small screens
-        window.addEventListener("resize", sidenavTypeOnResize);
-        window.addEventListener("load", sidenavTypeOnResize);
-
-        function sidenavTypeOnResize() {
-            let elements = document.querySelectorAll('[onclick="sidebarType(this)"]');
-            if (window.innerWidth < 1200) {
-                elements.forEach(function(el) {
-                    el.classList.add('disabled');
-                });
-            } else {
-                elements.forEach(function(el) {
-                    el.classList.remove('disabled');
-                });
-            }
-        }
-
         // Notification function
         function notify(el) {
             let body = document.querySelector('body');
@@ -639,7 +546,9 @@ export default class extends Controller
         // Show input error messages
         function showError(input, message) {
             const formControl = input.parentElement;
-            formControl.className = 'input-group input-group-outline my-5 is-invalid is-filled';
+            // formControl.className = 'input-group input-group-outline is-invalid is-filled'; ⬅ Old way
+            formControl.classList.remove('is-valid');
+            formControl.classList.add('is-invalid');
             const small = formControl.querySelector('small');
             if (small) {
                 small.innerText = message;
@@ -649,7 +558,9 @@ export default class extends Controller
         // show success colour
         function showSucces(input) {
             const formControl = input.parentElement;
-            formControl.className = 'input-group input-group-outline my-5 is-valid is-filled';
+            // formControl.className = 'input-group input-group-outline is-valid is-filled'; ⬅ Old way
+            formControl.classList.remove('is-invalid');
+            formControl.classList.add('is-valid');
         }
 
         // checkRequired fields
@@ -696,111 +607,24 @@ export default class extends Controller
             return true;
         }
 
-        // Event Listeners TODO::Form doesnt exists, uncomment after it works
-        form.addEventListener('submit', function(e) {
-          let validForm = true;
-          if(!checkRequired([password, password2])) {
-              validForm = false;
-          }
-          if(!checkLength(password, 6, 25)) {
-              validForm = false;
-          }
-          if(!checkPasswordMatch(password, password2)) {
-              validForm = false;
-          }
-          console.log(validForm);
-          if (!validForm) {
-              e.preventDefault();
-          }
-        });
-    }
-
-    sidebarType() {
-        let parent = event.currentTarget.parentElement.children;
-        let color = event.currentTarget.getAttribute("data-class");
-        let body = document.querySelector("body");
-        let bodyWhite = document.querySelector("body:not(.dark-version)");
-        let bodyDark = body.classList.contains('dark-version');
-        let colors = [];
-
-        for (let i = 0; i < parent.length; i++) {
-            parent[i].classList.remove('active');
-            colors.push(parent[i].getAttribute('data-class'));
-        }
-
-        if (!event.currentTarget.classList.contains('active')) {
-            event.currentTarget.classList.add('active');
-        } else {
-            event.currentTarget.classList.remove('active');
-        }
-
-        let sidebar = document.querySelector('.sidenav');
-        for (let i = 0; i < colors.length; i++) {
-            sidebar.classList.remove(colors[i]);
-        }
-
-        sidebar.classList.add(color);
-
-        // Remove text-white/text-dark classes
-        if (color === 'bg-transparent' || color === 'bg-white') {
-            let textWhites = document.querySelectorAll('.sidenav .text-white');
-            for (let i = 0; i < textWhites.length; i++) {
-                textWhites[i].classList.remove('text-white');
-                textWhites[i].classList.add('text-dark');
-            }
-        } else {
-            let textDarks = document.querySelectorAll('.sidenav .text-dark');
-            for (let i = 0; i < textDarks.length; i++) {
-                textDarks[i].classList.add('text-white');
-                textDarks[i].classList.remove('text-dark');
-            }
-        }
-
-        if (color === 'bg-transparent' && bodyDark) {
-            let textDarks = document.querySelectorAll('.navbar-brand .text-dark');
-            for (let i = 0; i < textDarks.length; i++) {
-                textDarks[i].classList.add('text-white');
-                textDarks[i].classList.remove('text-dark');
-            }
-        }
-
-        if ((color === 'bg-transparent' || color === 'bg-white') && bodyWhite) {
-            let navbarBrand = document.querySelector('.navbar-brand-img');
-            let navbarBrandImg = navbarBrand.src;
-
-            if (navbarBrandImg.includes('logo-ct.svg')) {
-                navbarBrand.src = navbarBrandImg.replace("logo-ct", "logo-ct-dark");;
-            }
-        } else {
-            let navbarBrand = document.querySelector('.navbar-brand-img');
-            let navbarBrandImg = navbarBrand.src;
-            if (navbarBrandImg.includes('logo-ct-dark.svg')) {
-                navbarBrand.src = navbarBrandImg.replace("logo-ct-dark", "logo-ct");
-            }
-        }
-
-        if (color === 'bg-white' && bodyDark) {
-            let navbarBrand = document.querySelector('.navbar-brand-img');
-            let navbarBrandImg = navbarBrand.src;
-
-            if (navbarBrandImg.includes('logo-ct.svg')) {
-                navbarBrand.src = navbarBrandImg.replace("logo-ct", "logo-ct-dark");
-            }
-        }
-    }
-
-    // Set Navbar Minimized
-    navbarMinimize(event) {
-        let sidenavShow = document.getElementsByClassName('g-sidenav-show')[0];
-
-        if (!event.currentTarget.getAttribute("checked")) {
-            sidenavShow.classList.remove('g-sidenav-pinned');
-            sidenavShow.classList.add('g-sidenav-hidden');
-            event.currentTarget.setAttribute("checked", "true");
-        } else {
-            sidenavShow.classList.remove('g-sidenav-hidden');
-            sidenavShow.classList.add('g-sidenav-pinned');
-            event.currentTarget.removeAttribute("checked");
+        // Event Listeners
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                let validForm = true;
+                if(!checkRequired([password, password2])) {
+                    validForm = false;
+                }
+                if(!checkLength(password, 6, 25)) {
+                    validForm = false;
+                }
+                if(!checkPasswordMatch(password, password2)) {
+                    validForm = false;
+                }
+                console.log(validForm);
+                if (!validForm) {
+                    e.preventDefault();
+                }
+            });
         }
     }
 

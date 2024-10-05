@@ -35,6 +35,12 @@ class Address
     #[ORM\Column(length: 11, nullable: true)]
     private ?string $zip = null;
 
+    #[ORM\Column(length: 18, nullable: true)]
+    private ?string $identNumber = null;
+
+    #[ORM\Column(length: 32, nullable: true)]
+    private ?string $vatNumber = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +126,30 @@ class Address
     public function setZip(?string $zip): static
     {
         $this->zip = $zip;
+
+        return $this;
+    }
+
+    public function getIdentNumber(): ?string
+    {
+        return $this->identNumber;
+    }
+
+    public function setIdentNumber(?string $identNumber): static
+    {
+        $this->identNumber = $identNumber;
+
+        return $this;
+    }
+
+    public function getVatNumber(): ?string
+    {
+        return $this->vatNumber;
+    }
+
+    public function setVatNumber(?string $vatNumber): static
+    {
+        $this->vatNumber = $vatNumber;
 
         return $this;
     }

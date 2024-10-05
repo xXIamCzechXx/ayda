@@ -1,0 +1,45 @@
+{# Widget providing new recruits as users #}
+<div class="card mt-2 card-plain">
+    <div class="card-body p-0 me-3 ms-3 mt-2">
+        <div class="d-flex">
+            <h3>Nové posily &#x1F4AA;</h3>
+        </div>
+    </div>
+</div>
+{% for user in recruitment.newRecruits %}
+    <div class="card mt-0 card-plain">
+        <div class="card-body p-3">
+            <div class="d-flex">
+                <div class="avatar avatar-lg">
+                    <a href="{{ path('app_account', { id: user.id }) }}"><img alt="Image placeholder" src="{{ user.avatarPath }}"></a>
+                </div>
+                <div class="ms-2 my-auto">
+                    <h6 class="mb-0"><a href="{{ path('app_account', { id: user.id }) }}">{{ user.name }}</a></h6>
+                    <p class="text-xs mb-0">Nástup: {{ user.workSince|date('d. m. Y') }}</p>
+                </div>
+            </div>
+            <p class="mt-3"> Nastupuje na pozici <a href="javascript:;" class="text-primary">{{ user.team.name }}</a>.</p>
+            <p class="mb-0"><b>Popis: </b>{{ user.description }}</p>
+            <hr class="horizontal dark">
+            <div class="d-flex">
+                <button type="button" class="btn btn-sm bg-gradient-dark mb-0" onclick="window.location.href='{{ path('app_account', { id: user.id }) }}'">
+                    Zobrazit
+                </button>
+                <div class="avatar-group ms-auto">
+                    <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexa Tompson">
+                        <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
+                    </a>
+                    <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
+                        <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
+                    </a>
+                    <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
+                        <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
+                    </a>
+                    <a href="javascript:;" class="avatar avatar-lg avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Martin Doe">
+                        <img alt="Image placeholder" src="{{ asset('build/images/user/default_avatar.png') }}">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

@@ -20,7 +20,7 @@ class AnniversaryProvider
      * @return User[]
      * @param int $limit
      */
-    public function getUpcomingAnniversaries(int $limit = 3): array
+    public function getUpcomingAnniversaries(int $limit = 4): array
     {
         $today = new \DateTime();
         $todayString = $today->format('m-d');

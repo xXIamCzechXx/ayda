@@ -92,6 +92,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Address $address = null;
 
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?Team $team = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -224,16 +227,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!empty($this->avatar)) {
             if (file_exists(sprintf("%s%s", self::DEFAULT_IMG_PATH, $this->avatar))) {
-                return sprintf("%s%s", self::DEFAULT_IMG_PATH, $this->avatar);
+                return sprintf("/%s%s", self::DEFAULT_IMG_PATH, $this->avatar);
             }
         }
 
-        return 'build/images/user/empty.png';
+        return $this->getEmptyImagePath();
     }
 
     public function getEmptyImagePath(): ?string
     {
-        return 'build/images/user/empty.png';
+        return '/build/images/user/empty.png';
     }
 
     public function isActive(): ?bool
@@ -420,6 +423,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getTeam(): ?Team
+    {
+        return $this->team;
+    }
+
+    public function setTeam(?Team $team): static
+    {
+        $this->team = $team;
 
         return $this;
     }

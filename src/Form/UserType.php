@@ -46,11 +46,11 @@ class UserType extends AbstractType
                 'class' => Currency::class,
                 'choice_label' => 'name',
             ])
-            ->add('degree', TextType::class, ['required' => false])
-            ->add('description', TextareaType::class, ['required' => false])
-            ->add('monthlyHours', IntegerType::class, ['required' => false])
-            ->add('holidayHours', IntegerType::class, ['required' => false])
-            ->add('hourlyWage', IntegerType::class, ['required' => false])
+            ->add('degree', TextType::class)
+            ->add('description', TextareaType::class)
+            ->add('monthlyHours', IntegerType::class)
+            ->add('holidayHours', IntegerType::class)
+            ->add('hourlyWage', IntegerType::class)
             ->add('lang', ChoiceType::class, [
                 'choices' => [
                     'Czech' => 'cz',
@@ -58,18 +58,20 @@ class UserType extends AbstractType
                 'placeholder' => false,
                 'required' => true,
             ])
-//            ->add('workSince', DateType::class, ['widget' => 'single_text', 'required' => false])
-            ->add('appDesign', ChoiceType::class, [
-                'choices' => AppDesignEnum::cases(),
-                'choice_label' => fn(AppDesignEnum $enum) => $enum->name,
-//                'multiple' => true,
-//                'expanded' => false,
+            ->add('workSince', DateType::class, [
+                'widget' => 'single_text',
+                'required' => false
             ])
-            ->add('appSidebarSpread', CheckboxType::class, ['required' => false])
-            ->add('appSidebarType', ChoiceType::class, [
-                'choices' => AppDesignEnum::cases(),
-                'choice_label' => fn(AppDesignEnum $enum) => $enum->name,
-            ])
+            // ->add('appDesign', ChoiceType::class, [
+                // 'choices' => AppDesignEnum::cases(),
+                // 'choice_label' => fn(AppDesignEnum $enum) => $enum->name,
+                // 'multiple' => true,
+                // 'expanded' => false,
+            // ])
+            // ->add('appSidebarType', ChoiceType::class, [
+                // 'choices' => AppDesignEnum::cases(),
+                // 'choice_label' => fn(AppDesignEnum $enum) => $enum->name,
+            // ])
             ->add('address', AddressType::class, [
                 'label' => 'Address',
             ]);

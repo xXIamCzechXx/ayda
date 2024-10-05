@@ -1,7 +1,9 @@
 <form action="#" class="form-control dropzone {{ class }}"
       data-controller="dropzone"
       data-dropzone-url-value="{{ url }}"
-      data-max-files="{{ maxFiles }}">
+      data-max-files="{{ maxFiles }}"
+      style="min-height: 100px;">
+    <i class="fa-regular fa-pen-to-square"></i>
     {% if image is not null %}
         <div class="dz-preview dz-file-preview">
             <div class="dz-image">
